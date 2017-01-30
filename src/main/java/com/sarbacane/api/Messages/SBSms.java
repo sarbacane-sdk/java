@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 
-public class PTMessage extends MessagesManager {
+public class SBSms extends MessagesManager {
 
     private long snapshotId;
     private long creditsUsed;
@@ -21,9 +21,9 @@ public class PTMessage extends MessagesManager {
     private String campaignName;
     private String category;
 
-    public PTMessage() {}
+    public SBSms() {}
     @JsonCreator
-    public PTMessage(@JsonProperty("creditsUsed") long creditsUsed, @JsonProperty("snapshotId") long snapshotId){
+    public SBSms(@JsonProperty("creditsUsed") long creditsUsed, @JsonProperty("snapshotId") long snapshotId){
         this.creditsUsed = creditsUsed;
         this.snapshotId = snapshotId;
     }

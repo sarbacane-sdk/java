@@ -7,8 +7,6 @@ import com.sun.mail.smtp.SMTPTransport;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -28,12 +26,12 @@ public class BaseManager {
 
     private static final String TYPE = "text/html; charset=utf-8";
     private static Properties props = new Properties();
-    private static Session session;
+
     private static SMTPTransport smtpTransport;
+    private static Session session;
 
+    private static SMTPTransport generateTransport(Message msg, Session session) throws MessagingException {
 
-    protected static int generateTransport(String mailFrom, String rcptTo, String subject, String message) throws MessagingException {
-        try {
             props.put("mail.smtp.host", smtpHost);
             props.put("mail.smtp.starttls.enable", "true");
             props.put("mail.smtp.auth", "true");
@@ -43,22 +41,23 @@ public class BaseManager {
             session = Session.getInstance(props);
             smtpTransport = (SMTPTransport) session.getTransport("smtp");
             smtpTransport.connect(smtpHost, smtpPort, AuthenticationManager.getEmailUser(), AuthenticationManager.getEmailApikey());
-            Message msg = new MimeMessage(session);
-            msg.setFrom(new InternetAddress(mailFrom));
-            msg.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(rcptTo));
-            msg.setSubject(subject);
             msg.setSentDate(new Date());
             msg.setContent("", TYPE);
             msg.setHeader("X-SARBACANE-SDK", "1.0");
-            smtpTransport.sendMessage(msg, msg.getAllRecipients());
-            smtpTransport.close();
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        }
-        return smtpTransport.getLastReturnCode();
+            return smtpTransport;
+
     }
 
-
+    protected static String sendTransport (Message msg, Session session) throws MessagingException {
+    try {
+        SMTPTransport smtpTransport = generateTransport(msg, session);
+        smtpTransport.sendMessage(msg, msg.getAllRecipients());
+        smtpTransport.close();
+    } catch (MessagingException e) {
+        e.printStackTrace();
+    }
+        return smtpTransport.getLastServerResponse();
+}
 
     private static HttpURLConnection httpWithTokens(String url, String method) {
         try {

@@ -6,7 +6,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sarbacane.api.Authentication.AuthenticationManager;
 import com.sarbacane.api.Base.BaseManager;
 
+import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.List;
@@ -27,18 +31,26 @@ import java.util.List;
 
 public class MessagesManager extends BaseManager {
 
-    public int sendEmail(String mailFrom, String rcptTo, String subject, String message) throws MessagingException {
+    private static Session session;
+
+    public static String sendEmail(SBEmail email) throws MessagingException {
         AuthenticationManager.ensureEmailTokens();
-        if ((!isSet(mailFrom)) || (!isSet(rcptTo)) || !(isSet(subject)) || (!isSet(message))) {
+
+        if ((!isSet(email.getMailFrom())) || (!isSet(email.getRcptTo())) || !(isSet(email.getSubject())) || (!isSet(email.getMessage()))) {
             throw new RuntimeException("Error: missing params. sendEmail(mailFrom, rcptTo, subject, message");
         } else {
-            return BaseManager.generateTransport(mailFrom, rcptTo, subject, message);
+            Message msg = new MimeMessage(session);
+            msg.setFrom(new InternetAddress(email.getMailFrom()));
+            msg.setSubject(email.getSubject());
+            msg.setRecipient(Message.RecipientType.TO, new InternetAddress(email.getRcptTo()));
+            msg.setText(email.getMessage());
+            return BaseManager.sendTransport(msg, session);
         }
     }
 
     private static ObjectMapper mapper = new ObjectMapper();
 
-    public static PTResult messagesNotificationSend(PTMessage msg) throws IOException {
+    public static PTResult messagesNotificationSend(SBSms msg) throws IOException {
         AuthenticationManager.ensureSmsTokens();
         if (!isSet(msg.getNumber()) || !isSet(msg.getMessage())) {
             throw new RuntimeException("Error: SMS NOT SENT - message and number are required.\n");
@@ -51,7 +63,7 @@ public class MessagesManager extends BaseManager {
         }
     }
 
-    public static PTResult messagesMarketingSend(PTMessage msg) throws IOException {
+    public static PTResult messagesMarketingSend(SBSms msg) throws IOException {
         AuthenticationManager.ensureSmsTokens();
         if (!isSet(msg.getNumber()) || !isSet(msg.getMessage())) {
             throw new RuntimeException("Error: SMS NOT SENT - message and number are required.\n");
