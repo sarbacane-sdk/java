@@ -12,38 +12,66 @@ public class AuthenticationManager {
 
 
 
-    private static String apiKey;
+    private static String smsApikey;
 
-    public static String getApiKey() {
-        return apiKey;
+    public static String getSmsApikey() {
+        return smsApikey;
     }
 
-
-    public static void setApiKey(String apiKey) {
-        if (isSet(apiKey) && (apiKey.length()==32)) {
-            AuthenticationManager.apiKey = apiKey;
+    public static void setSmsApikey(String smsApikey) {
+        if (isSet(smsApikey) && (smsApikey.length()==32)) {
+            AuthenticationManager.smsApikey = smsApikey;
         } else {
-            throw new RuntimeException("Incorrect (or null?) API Key !");
+            throw new RuntimeException("Incorrect SMS tokens !");
         }
     }
 
-
-
-
-    private static boolean credentialsAreSet() {
-        return isSet(apiKey);
+    private static boolean smsCredentialsAreSet() {
+        return isSet(smsApikey);
     }
 
-    private static boolean userIsLoggedIn() {
-        return (isSet(getApiKey()));
-    }
+    //private static boolean userIsLoggedIn() {
+    //    return (isSet(getSmsApikey()));
+    //}
 
-    public static void ensureLogin() {
-        if (!AuthenticationManager.credentialsAreSet()) {
-            throw new RuntimeException("API Key is not defined !");
+    public static void ensureSmsTokens() {
+        if (!AuthenticationManager.smsCredentialsAreSet()) {
+            throw new RuntimeException("Invalid SMS Credentials !");
         }
     }
 
+    private static String emailUser;
+    private static String emailApikey;
+
+    public static String getEmailUser() {
+        return emailUser;
+    }
+    public static String getEmailApikey() {
+        return emailApikey;
+    }
+
+    public static void setEmailTokens(String emailUser, String emailApikey) {
+        if (isSet(emailUser) && isSet(emailApikey) && (emailApikey.length()==32)) {
+            AuthenticationManager.emailApikey = emailApikey;
+            AuthenticationManager.emailUser = emailUser;
+        } else {
+            throw new RuntimeException("Incorrect Email tokens !");
+        }
+    }
+
+    private static boolean emailCredentialsAreSet() {
+        return isSet(emailUser) && isSet(emailApikey);
+    }
+
+    //private static boolean userIsLoggedIn() {
+    //    return (isSet(getSmsApikey()));
+    //}
+
+    public static void ensureEmailTokens() {
+        if (!AuthenticationManager.emailCredentialsAreSet()) {
+            throw new RuntimeException("Invalid Email credentials !");
+        }
+    }
 
 
         private static String proxyHost = null;

@@ -19,7 +19,7 @@ import java.util.List;
 public class FieldsManager extends BaseManager {
 
     public static PTField fieldsCreate (PTField newPTField) throws IOException {
-        AuthenticationManager.ensureLogin();
+        AuthenticationManager.ensureSmsTokens();
         if (!isSet(newPTField.getType())) {
             throw new RuntimeException("Error: field type is required: STRING, DATE or NUMBER.\n");
         } else if (! "string".equals(newPTField.getType().toLowerCase()) &&! "date".equals(newPTField.getType().toLowerCase()) && ! "number".equals(newPTField.getType().toLowerCase()))  {
@@ -38,7 +38,7 @@ public class FieldsManager extends BaseManager {
     }
 
     public static String fieldsDelete (PTField newPTField) throws IOException {
-        AuthenticationManager.ensureLogin();
+        AuthenticationManager.ensureSmsTokens();
         if (!isSet(newPTField.getId())) {
             throw new RuntimeException("Error: Please define a FieldId.");
         } else {
@@ -47,7 +47,7 @@ public class FieldsManager extends BaseManager {
     }
 
     public static List<PTField> fieldsGet (String listId) throws IOException {
-        AuthenticationManager.ensureLogin();
+        AuthenticationManager.ensureSmsTokens();
         if (!isSet(listId)) {
             throw new RuntimeException("Error: Please define a ListId.");
         } else {

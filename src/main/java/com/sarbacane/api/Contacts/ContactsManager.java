@@ -20,7 +20,7 @@ import java.util.List;
 public class ContactsManager extends BaseManager {
 
     public static PTContact contactsCreate(PTContact newContact) throws IOException {
-        AuthenticationManager.ensureLogin();
+        AuthenticationManager.ensureSmsTokens();
         if (!isSet(newContact.getListId())) {
             throw new RuntimeException("Error: listId is required.\n");
         } else {
@@ -31,7 +31,7 @@ public class ContactsManager extends BaseManager {
     }
 
     public static List<PTContact> contactsGet(String listId) throws IOException {
-        AuthenticationManager.ensureLogin();
+        AuthenticationManager.ensureSmsTokens();
         if(!isSet(listId)) {
             throw new RuntimeException("Error: listId is required.\n");
         }
@@ -40,7 +40,7 @@ public class ContactsManager extends BaseManager {
     }
 
     public static String contactsDelete (PTContact newContact) throws IOException {
-        AuthenticationManager.ensureLogin();
+        AuthenticationManager.ensureSmsTokens();
         if (!isSet(newContact.getListId())) {
             throw new RuntimeException("Error: listId is required.\n");
         }

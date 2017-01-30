@@ -29,22 +29,22 @@ public class AccountManager extends BaseManager {
     private static ObjectMapper mapper = new ObjectMapper();
 
     public static PTAccount accountStats() throws IOException {
-        AuthenticationManager.ensureLogin();
+        AuthenticationManager.ensureSmsTokens();
         return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/account/stats"), PTAccount.class);
     }
 
     public static List<PTBounce> accountBouncesGet() throws IOException {
-        AuthenticationManager.ensureLogin();
+        AuthenticationManager.ensureSmsTokens();
         return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/bounces/default/contacts"), new TypeReference<List<PTBounce>>() {});
     }
 
     public static List<PTUnsubscriber> accountUnsubscribersGet() throws IOException {
-        AuthenticationManager.ensureLogin();
+        AuthenticationManager.ensureSmsTokens();
         return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/unsubscribers/default/contacts"), new TypeReference<List<PTUnsubscriber>>() {});
     }
 
     public static PTBounce accountBouncesCreate(String identifier) throws IOException {
-        AuthenticationManager.ensureLogin();
+        AuthenticationManager.ensureSmsTokens();
         PTBounce ptb = new PTBounce();
         ptb.setIdentifier(identifier);
         ObjectMapper mapper = new ObjectMapper();
@@ -53,7 +53,7 @@ public class AccountManager extends BaseManager {
     }
 
     public static PTUnsubscriber accountUnsubscribersCreate(String identifier) throws IOException {
-        AuthenticationManager.ensureLogin();
+        AuthenticationManager.ensureSmsTokens();
         PTBounce ptb = new PTBounce();
         ptb.setIdentifier(identifier);
         ObjectMapper mapper = new ObjectMapper();
@@ -62,7 +62,7 @@ public class AccountManager extends BaseManager {
     }
 
     public static String accountBouncesDeleteByIdentifier(String identifier) throws IOException {
-        AuthenticationManager.ensureLogin();
+        AuthenticationManager.ensureSmsTokens();
         if (!isSet(identifier)) {
             throw new RuntimeException("Error: identifier is required.");
         }
@@ -70,7 +70,7 @@ public class AccountManager extends BaseManager {
     }
 
     public static String accountUnsubscribersDeleteByIdentifier(String identifier) throws IOException {
-        AuthenticationManager.ensureLogin();
+        AuthenticationManager.ensureSmsTokens();
         if (!isSet(identifier)) {
             throw new RuntimeException("Error: identifier is required.");
         }
@@ -78,7 +78,7 @@ public class AccountManager extends BaseManager {
     }
 
     public static String accountBouncesDeleteById(String id) throws IOException {
-        AuthenticationManager.ensureLogin();
+        AuthenticationManager.ensureSmsTokens();
         if (!isSet(id)) {
             throw new RuntimeException("Error: identifier is required.");
         }
@@ -86,7 +86,7 @@ public class AccountManager extends BaseManager {
     }
 
     public static String accountUnsubscribersDeleteById(String id) throws IOException {
-        AuthenticationManager.ensureLogin();
+        AuthenticationManager.ensureSmsTokens();
         if (!isSet(id)) {
             throw new RuntimeException("Error: identifier is required.");
         }

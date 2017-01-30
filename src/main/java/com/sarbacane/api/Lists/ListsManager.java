@@ -23,7 +23,7 @@ public class ListsManager extends BaseManager {
     private static ObjectMapper mapper = new ObjectMapper();
 
     public static PTList listsCreate(String name) throws IOException {
-        AuthenticationManager.ensureLogin();
+        AuthenticationManager.ensureSmsTokens();
         if (!isSet(name)) {
             throw new RuntimeException("Error: name is required.\n");
         } else {
@@ -34,12 +34,12 @@ public class ListsManager extends BaseManager {
     }
 
     public static List<PTList> listsGet () throws IOException {
-        AuthenticationManager.ensureLogin();
+        AuthenticationManager.ensureSmsTokens();
         return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/lists"), new TypeReference<List<PTList>>(){});
     }
 
     public static PTList listsGet (String listId) throws IOException {
-        AuthenticationManager.ensureLogin();
+        AuthenticationManager.ensureSmsTokens();
         if (!isSet(listId)) {
             throw new RuntimeException("Error: listId is required.\n");
         } else {
@@ -48,7 +48,7 @@ public class ListsManager extends BaseManager {
     }
 
     public static String bulkImport(String listId, String filePath) throws IOException {
-        AuthenticationManager.ensureLogin();
+        AuthenticationManager.ensureSmsTokens();
         if ( (!isSet(listId)) || (!isSet(filePath)) ) {
             throw new RuntimeException("Error: listId AND filePath are required.\n");
         } else {
@@ -58,7 +58,7 @@ public class ListsManager extends BaseManager {
     }
 
     public static String operationStatus (String operationUrl) throws IOException {
-        AuthenticationManager.ensureLogin();
+        AuthenticationManager.ensureSmsTokens();
         if (!isSet(operationUrl)) {
             throw new RuntimeException("Error: operationId is required.\n");
         } else {
@@ -68,7 +68,7 @@ public class ListsManager extends BaseManager {
     }
 
     public static String listsDelete (String listId) throws IOException {
-        AuthenticationManager.ensureLogin();
+        AuthenticationManager.ensureSmsTokens();
         if (!isSet(listId)) {
             throw new RuntimeException("Error: listId is required.\n");
         } else {

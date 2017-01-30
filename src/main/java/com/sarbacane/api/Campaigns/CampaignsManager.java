@@ -22,7 +22,7 @@ public class CampaignsManager extends BaseManager {
     private static ObjectMapper mapper = new ObjectMapper();
 
     public static PTResult campaignsMarketingCreate(PTCampaign campaign) throws IOException {
-        AuthenticationManager.ensureLogin();
+        AuthenticationManager.ensureSmsTokens();
         if (!isSet(campaign.getName()) || (!isSet(campaign.getMessage())) || ("null".equals(campaign.getPTSendList()))) {
             throw new RuntimeException("Error: name, message and sendList are required.\n");
         } else {
@@ -36,7 +36,7 @@ public class CampaignsManager extends BaseManager {
     }
 
     public static PTResult campaignsNotificationCreate(PTCampaign campaign) throws IOException {
-        AuthenticationManager.ensureLogin();
+        AuthenticationManager.ensureSmsTokens();
         if (!isSet(campaign.getName()) || (!isSet(campaign.getMessage())) || ("null".equals(campaign.getPTSendList()))) {
             throw new RuntimeException("Error: name, message and sendList are required.\n");
         } else {
@@ -50,7 +50,7 @@ public class CampaignsManager extends BaseManager {
     }
 
     public static PTCampaign campaignsGet(String campaignId) throws IOException {
-        AuthenticationManager.ensureLogin();
+        AuthenticationManager.ensureSmsTokens();
         if (!isSet(campaignId)) {
             throw new RuntimeException("Error: You need to specify the campaignId.\n");
         } else {
@@ -59,12 +59,12 @@ public class CampaignsManager extends BaseManager {
     }
 
     public static List<PTCampaign> campaignsGet() throws IOException {
-        AuthenticationManager.ensureLogin();
+        AuthenticationManager.ensureSmsTokens();
         return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/campaigns/"), new TypeReference<List<PTCampaign>>() {});
     }
 
     public static PTResult campaignsTest(String campaignId, String identifier) throws IOException {
-        AuthenticationManager.ensureLogin();
+        AuthenticationManager.ensureSmsTokens();
         if (!isSet(campaignId) || (!isSet(identifier))) {
             throw new RuntimeException("Error: campaignId and identifierare required.\n");
         } else {
@@ -75,7 +75,7 @@ public class CampaignsManager extends BaseManager {
     }
 
     public static PTResult campaignsSend(String campaignId) throws IOException {
-        AuthenticationManager.ensureLogin();
+        AuthenticationManager.ensureSmsTokens();
         if (!isSet(campaignId)) {
             throw new RuntimeException("Error: campaignId is required.\n");
         } else {
@@ -84,7 +84,7 @@ public class CampaignsManager extends BaseManager {
     }
 
     public static PTCampaignStats campaignsStats(String campaignId) throws IOException {
-        AuthenticationManager.ensureLogin();
+        AuthenticationManager.ensureSmsTokens();
         if (!isSet(campaignId)) {
             throw new RuntimeException("Error: You need to specify the campaignId.\n");
         } else {
@@ -93,7 +93,7 @@ public class CampaignsManager extends BaseManager {
     }
 
     public static List<PTCampaignReply> campaignsReplies(String campaignId) throws IOException {
-        AuthenticationManager.ensureLogin();
+        AuthenticationManager.ensureSmsTokens();
         if (!isSet(campaignId)) {
             throw new RuntimeException("Error: You need to specify the campaignId.\n");
         } else {
@@ -102,7 +102,7 @@ public class CampaignsManager extends BaseManager {
     }
 
     public static PTCampaignBlacklists campaignsBlacklists(String campaignId) throws IOException {
-        AuthenticationManager.ensureLogin();
+        AuthenticationManager.ensureSmsTokens();
         if (!isSet(campaignId)) {
             throw new RuntimeException("Error: You need to specify the campaignId.\n");
         } else {
