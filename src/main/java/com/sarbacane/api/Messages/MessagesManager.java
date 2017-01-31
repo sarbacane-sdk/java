@@ -6,11 +6,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sarbacane.api.Authentication.AuthenticationManager;
 import com.sarbacane.api.Base.BaseManager;
 
-import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.List;
@@ -32,23 +29,16 @@ import java.util.List;
 public class MessagesManager extends BaseManager {
 
     private static Session session;
+    private static ObjectMapper mapper = new ObjectMapper();
 
     public static String sendEmail(SBEmail email) throws MessagingException {
         AuthenticationManager.ensureEmailTokens();
-
-        if ((!isSet(email.getMailFrom())) || (!isSet(email.getRcptTo())) || !(isSet(email.getSubject())) || (!isSet(email.getMessage()))) {
+        if ((!isSet(email.getMailFrom())) || (!isSet(email.getRecipients().toString())) || !(isSet(email.getSubject())) || (!isSet(email.getMessage()))) {
             throw new RuntimeException("Error: missing params. sendEmail(mailFrom, rcptTo, subject, message");
         } else {
-            Message msg = new MimeMessage(session);
-            msg.setFrom(new InternetAddress(email.getMailFrom()));
-            msg.setSubject(email.getSubject());
-            msg.setRecipient(Message.RecipientType.TO, new InternetAddress(email.getRcptTo()));
-            msg.setText(email.getMessage());
-            return BaseManager.sendTransport(msg, session);
+            return BaseManager.sendTransport(email);
         }
     }
-
-    private static ObjectMapper mapper = new ObjectMapper();
 
     public static PTResult messagesNotificationSend(SBSms msg) throws IOException {
         AuthenticationManager.ensureSmsTokens();

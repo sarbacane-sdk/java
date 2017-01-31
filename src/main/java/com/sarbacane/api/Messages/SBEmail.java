@@ -1,14 +1,29 @@
 package com.sarbacane.api.Messages;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by guru on 30/01/17.
  */
 public class SBEmail extends MessagesManager {
     private String mailFrom;
-    private String rcptTo;
+    private String subject;
+    private String message;
+
+
+    private List<String> recipients = new ArrayList<String>();
 
     public SBEmail() {
 
+    }
+
+    public List<String> getRecipients() {
+        return recipients;
+    }
+
+    public void setRecipients(List<String> recipients) {
+        this.recipients = recipients;
     }
 
     public String getMailFrom() {
@@ -19,13 +34,6 @@ public class SBEmail extends MessagesManager {
         this.mailFrom = mailFrom;
     }
 
-    public String getRcptTo() {
-        return rcptTo;
-    }
-
-    public void setRcptTo(String rcptTo) {
-        this.rcptTo = rcptTo;
-    }
 
     public String getSubject() {
         return subject;
@@ -42,9 +50,6 @@ public class SBEmail extends MessagesManager {
     public void setMessage(String message) {
         this.message = message;
     }
-
-    private String subject;
-    private String message;
 
 
 }

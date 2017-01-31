@@ -2,11 +2,14 @@ package com.sarbacane.api.Base;
 
 
 import com.sarbacane.api.Authentication.AuthenticationManager;
+import com.sarbacane.api.Messages.SBEmail;
 import com.sun.mail.smtp.SMTPTransport;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -19,38 +22,61 @@ import java.util.Properties;
  * Created by guru on 07/11/14.
  */
 public class BaseManager {
+    private static final String TYPE = "text/html; charset=utf-8";
     protected static String baseURL = "https://api.primotexto.com/v2";
-
     protected static String smtpHost = "smtp.tipimail.com";
     protected static Integer smtpPort = 587;
-
-    private static final String TYPE = "text/html; charset=utf-8";
     private static Properties props = new Properties();
 
     private static SMTPTransport smtpTransport;
     private static Session session;
+//
+//    private static SMTPTransport generateTransport(Message msg, Session session) throws MessagingException {
+//
+//            props.put("mail.smtp.host", smtpHost);
+//            props.put("mail.smtp.starttls.enable", "true");
+//            props.put("mail.smtp.auth", "true");
+//            props.put("mail.smtp.socketFactory.port", String.valueOf(smtpPort));
+//            props.put("mail.smtp.port", String.valueOf(smtpPort));
+//            props.put("mail.smtp.connectiontimeout", 60000);
+//            session = Session.getInstance(props);
+//            smtpTransport = (SMTPTransport) session.getTransport("smtp");
+//            smtpTransport.connect(smtpHost, smtpPort, AuthenticationManager.getEmailUser(), AuthenticationManager.getEmailApikey());
+//            msg.setSentDate(new Date());
+//            msg.setContent("", TYPE);
+//            msg.setHeader("X-SARBACANE-SDK", "1.0");
+//            return smtpTransport;
+//
+//    }
 
-    private static SMTPTransport generateTransport(Message msg, Session session) throws MessagingException {
-
-            props.put("mail.smtp.host", smtpHost);
-            props.put("mail.smtp.starttls.enable", "true");
-            props.put("mail.smtp.auth", "true");
-            props.put("mail.smtp.socketFactory.port", String.valueOf(smtpPort));
-            props.put("mail.smtp.port", String.valueOf(smtpPort));
-            props.put("mail.smtp.connectiontimeout", 60000);
-            session = Session.getInstance(props);
-            smtpTransport = (SMTPTransport) session.getTransport("smtp");
-            smtpTransport.connect(smtpHost, smtpPort, AuthenticationManager.getEmailUser(), AuthenticationManager.getEmailApikey());
-            msg.setSentDate(new Date());
-            msg.setContent("", TYPE);
-            msg.setHeader("X-SARBACANE-SDK", "1.0");
-            return smtpTransport;
-
-    }
-
-    protected static String sendTransport (Message msg, Session session) throws MessagingException {
+    protected static String sendTransport(SBEmail email) throws MessagingException {
     try {
-        SMTPTransport smtpTransport = generateTransport(msg, session);
+        props.put("mail.smtp.host", smtpHost);
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.socketFactory.port", String.valueOf(smtpPort));
+        props.put("mail.smtp.port", String.valueOf(smtpPort));
+        props.put("mail.smtp.connectiontimeout", 60000);
+        session = Session.getInstance(props);
+        smtpTransport = (SMTPTransport) session.getTransport("smtp");
+        smtpTransport.connect(smtpHost, smtpPort, AuthenticationManager.getEmailUser(), AuthenticationManager.getEmailApikey());
+        Message msg = new MimeMessage(session);
+        msg.setSentDate(new Date());
+        msg.setContent("", TYPE);
+        msg.setHeader("X-SARBACANE-SDK", "1.0");
+        msg.setFrom(new InternetAddress(email.getMailFrom()));
+        msg.setSubject(email.getSubject());
+
+        InternetAddress[] address = new InternetAddress[email.getRecipients().size()];
+        int counter = 0;
+        for (String recipient : email.getRecipients()) {
+            address[counter] = new InternetAddress(recipient.trim());
+            counter++;
+        }
+        msg.setRecipients(Message.RecipientType.TO, address);
+
+        msg.setText(email.getMessage());
+        System.out.println("message: " + email.getMessage());
         smtpTransport.sendMessage(msg, msg.getAllRecipients());
         smtpTransport.close();
     } catch (MessagingException e) {
