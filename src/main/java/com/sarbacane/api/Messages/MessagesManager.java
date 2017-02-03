@@ -41,31 +41,31 @@ public class MessagesManager extends BaseManager {
     }
 
 
-    public static PTResult messagesNotificationSend(SBSms msg) throws IOException {
+    public static PTResult sendSms(SBSms msg) throws IOException {
         AuthenticationManager.ensureSmsTokens();
-        if (!isSet(msg.getNumber()) || !isSet(msg.getMessage())) {
-            throw new RuntimeException("Error: SMS NOT SENT - message and number are required.\n");
+        if (!isSet(msg.getNumber()) || !isSet(msg.getMessage()) || !isSet(msg.getType())) {
+            throw new RuntimeException("Error: SMS NOT SENT - message, number and type are required.\n");
         } else if (isSet(msg.getCategory()) && !isSet(msg.getCampaignName())) {
             throw new RuntimeException("Error: Please define a campaignName for catagory\n");
         } else {
             ObjectMapper mapper = new ObjectMapper();
             String json = mapper.writeValueAsString(msg);
-            return mapper.readValue(BaseManager.httpPost(BaseManager.baseURL + "/notification/messages/send", json), PTResult.class);
+            return mapper.readValue(BaseManager.httpPost(BaseManager.baseURL + "/" + msg.getType() + "/messages/send", json), PTResult.class);
         }
     }
 
-    public static PTResult messagesMarketingSend(SBSms msg) throws IOException {
-        AuthenticationManager.ensureSmsTokens();
-        if (!isSet(msg.getNumber()) || !isSet(msg.getMessage())) {
-            throw new RuntimeException("Error: SMS NOT SENT - message and number are required.\n");
-        } else if (isSet(msg.getCategory()) && !isSet(msg.getCampaignName())) {
-            throw new RuntimeException("Error: Please define a campaignName for catagory\n");
-        } else {
-            ObjectMapper mapper = new ObjectMapper();
-            String json = mapper.writeValueAsString(msg);
-            return mapper.readValue(BaseManager.httpPost(BaseManager.baseURL + "/marketing/messages/send", json), PTResult.class);
-        }
-    }
+//    public static PTResult sendMarketingSms(SBSms msg) throws IOException {
+//        AuthenticationManager.ensureSmsTokens();
+//        if (!isSet(msg.getNumber()) || !isSet(msg.getMessage())) {
+//            throw new RuntimeException("Error: SMS NOT SENT - message and number are required.\n");
+//        } else if (isSet(msg.getCategory()) && !isSet(msg.getCampaignName())) {
+//            throw new RuntimeException("Error: Please define a campaignName for catagory\n");
+//        } else {
+//            ObjectMapper mapper = new ObjectMapper();
+//            String json = mapper.writeValueAsString(msg);
+//            return mapper.readValue(BaseManager.httpPost(BaseManager.baseURL + "/marketing/messages/send", json), PTResult.class);
+//        }
+//    }
 
     public static PTSnapshot messagesGetStatusBySnapshotId(String snapshotId) throws IOException {
         AuthenticationManager.ensureSmsTokens();
