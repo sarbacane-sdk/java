@@ -46,6 +46,7 @@ AuthenticationManager.setSmsApikey("da3f2a93592ad9f43fb38977e8f64d76");
 #### Buy credits
 
 Email credits: https://fr.tipimail.com/tarifs
+
 SMS credits: https://www.primotexto.com/tarif-sms-web.asp
 
 
