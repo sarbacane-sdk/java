@@ -1,8 +1,9 @@
 ### Sarbacane SDK JAVA - Send e-mail and text messages (sms)
 
 
-* Load artefact with pom.xml
-* Sources
+* Load artefact from pom.xml
+* Download JAR
+* Download sources
 * Authentication
 * Buy credits
 * Send E-mail
@@ -18,6 +19,11 @@
   <version>1.0.2</version>
 </dependency>
 ```
+
+
+#### JAR
+
+[Download](https://oss.sonatype.org/service/local/repositories/releases/content/com/sarbacane/sarbacane-sdk/1.0.2/sarbacane-sdk-1.0.2.jar)
 
 
 #### Sources
@@ -43,11 +49,11 @@ AuthenticationManager.setSmsApikey("da3f2a93592ad9f43fb38977e8f64d76");
 ```
 
 
-#### Buy credits
+#### Credits
 
-Email credits: https://fr.tipimail.com/tarifs
+[Buy E-mail credits](https://fr.tipimail.com/tarifs) 
 
-SMS credits: https://www.primotexto.com/tarif-sms-web.asp
+[Buy SMS credits](https://www.primotexto.com/tarif-sms-web.asp)
 
 
 #### Send E-mail
