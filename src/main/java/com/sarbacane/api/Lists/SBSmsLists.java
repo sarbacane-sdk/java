@@ -3,7 +3,7 @@ package com.sarbacane.api.Lists;
 /**
  * Created by guru on 02/04/15.
  */
-public class PTLists extends ListsManager {
+public class SBSmsLists extends ListsManager {
     public String id=null;
     public String name=null;
 

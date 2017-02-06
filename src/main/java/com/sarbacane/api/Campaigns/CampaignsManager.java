@@ -21,9 +21,9 @@ public class CampaignsManager extends BaseManager {
 
     private static ObjectMapper mapper = new ObjectMapper();
 
-    public static PTResult campaignsMarketingCreate(PTCampaign campaign) throws IOException {
+    public static SBSmsCampaignSendingResult campaignsMarketingCreate(SBSmsCampaign campaign) throws IOException {
         AuthenticationManager.ensureSmsTokens();
-        if (!isSet(campaign.getName()) || (!isSet(campaign.getMessage())) || ("null".equals(campaign.getPTSendList()))) {
+        if (!isSet(campaign.getName()) || (!isSet(campaign.getMessage())) || ("null".equals(campaign.getSBSmsCampaignSendList()))) {
             throw new RuntimeException("Error: name, message and sendList are required.\n");
         } else {
             if (!isSet(campaign.getType())) {
@@ -31,13 +31,13 @@ public class CampaignsManager extends BaseManager {
             }
             ObjectMapper mapper = new ObjectMapper();
             String json = mapper.writeValueAsString(campaign);
-            return mapper.readValue(BaseManager.httpPost(BaseManager.baseURL + "/marketing/campaigns", json), PTResult.class);
+            return mapper.readValue(BaseManager.httpPost(BaseManager.baseURL + "/marketing/campaigns", json), SBSmsCampaignSendingResult.class);
         }
     }
 
-    public static PTResult campaignsNotificationCreate(PTCampaign campaign) throws IOException {
+    public static SBSmsCampaignSendingResult campaignsNotificationCreate(SBSmsCampaign campaign) throws IOException {
         AuthenticationManager.ensureSmsTokens();
-        if (!isSet(campaign.getName()) || (!isSet(campaign.getMessage())) || ("null".equals(campaign.getPTSendList()))) {
+        if (!isSet(campaign.getName()) || (!isSet(campaign.getMessage())) || ("null".equals(campaign.getSBSmsCampaignSendList()))) {
             throw new RuntimeException("Error: name, message and sendList are required.\n");
         } else {
             if (!isSet(campaign.getType())) {
@@ -45,68 +45,68 @@ public class CampaignsManager extends BaseManager {
             }
             ObjectMapper mapper = new ObjectMapper();
             String json = mapper.writeValueAsString(campaign);
-            return mapper.readValue(BaseManager.httpPost(BaseManager.baseURL + "/marketing/campaigns", json), PTResult.class);
+            return mapper.readValue(BaseManager.httpPost(BaseManager.baseURL + "/marketing/campaigns", json), SBSmsCampaignSendingResult.class);
         }
     }
 
-    public static PTCampaign campaignsGet(String campaignId) throws IOException {
+    public static SBSmsCampaign campaignsGet(String campaignId) throws IOException {
         AuthenticationManager.ensureSmsTokens();
         if (!isSet(campaignId)) {
             throw new RuntimeException("Error: You need to specify the campaignId.\n");
         } else {
-            return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/campaigns/" + campaignId), PTCampaign.class);
+            return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/campaigns/" + campaignId), SBSmsCampaign.class);
         }
     }
 
-    public static List<PTCampaign> campaignsGet() throws IOException {
+    public static List<SBSmsCampaign> campaignsGet() throws IOException {
         AuthenticationManager.ensureSmsTokens();
-        return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/campaigns/"), new TypeReference<List<PTCampaign>>() {});
+        return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/campaigns/"), new TypeReference<List<SBSmsCampaign>>() {});
     }
 
-    public static PTResult campaignsTest(String campaignId, String identifier) throws IOException {
+    public static SBSmsCampaignSendingResult campaignsTest(String campaignId, String identifier) throws IOException {
         AuthenticationManager.ensureSmsTokens();
         if (!isSet(campaignId) || (!isSet(identifier))) {
             throw new RuntimeException("Error: campaignId and identifierare required.\n");
         } else {
             ObjectMapper mapper = new ObjectMapper();
             String json = "{\"identifier\": \"" + identifier + "\"}" ;
-            return mapper.readValue(BaseManager.httpPost(BaseManager.baseURL + "/campaigns/" + campaignId + "/test", json), PTResult.class);
+            return mapper.readValue(BaseManager.httpPost(BaseManager.baseURL + "/campaigns/" + campaignId + "/test", json), SBSmsCampaignSendingResult.class);
         }
     }
 
-    public static PTResult campaignsSend(String campaignId) throws IOException {
+    public static SBSmsCampaignSendingResult campaignsSend(String campaignId) throws IOException {
         AuthenticationManager.ensureSmsTokens();
         if (!isSet(campaignId)) {
             throw new RuntimeException("Error: campaignId is required.\n");
         } else {
-            return mapper.readValue(BaseManager.httpPost(BaseManager.baseURL + "/campaigns/" + campaignId + "/send", "SEND"), PTResult.class);
+            return mapper.readValue(BaseManager.httpPost(BaseManager.baseURL + "/campaigns/" + campaignId + "/send", "SEND"), SBSmsCampaignSendingResult.class);
         }
     }
 
-    public static PTCampaignStats campaignsStats(String campaignId) throws IOException {
+    public static SBSmsCampaignStats campaignsStats(String campaignId) throws IOException {
         AuthenticationManager.ensureSmsTokens();
         if (!isSet(campaignId)) {
             throw new RuntimeException("Error: You need to specify the campaignId.\n");
         } else {
-            return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/campaigns/" + campaignId + "/status"), PTCampaignStats.class);
+            return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/campaigns/" + campaignId + "/status"), SBSmsCampaignStats.class);
         }
     }
 
-    public static List<PTCampaignReply> campaignsReplies(String campaignId) throws IOException {
+    public static List<SBSmsCampaignReply> campaignsReplies(String campaignId) throws IOException {
         AuthenticationManager.ensureSmsTokens();
         if (!isSet(campaignId)) {
             throw new RuntimeException("Error: You need to specify the campaignId.\n");
         } else {
-            return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/campaigns/" + campaignId + "/replies"), new TypeReference<List<PTCampaignReply>>() {});
+            return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/campaigns/" + campaignId + "/replies"), new TypeReference<List<SBSmsCampaignReply>>() {});
         }
     }
 
-    public static PTCampaignBlacklists campaignsBlacklists(String campaignId) throws IOException {
+    public static SBSmsCampaignBlacklists campaignsBlacklists(String campaignId) throws IOException {
         AuthenticationManager.ensureSmsTokens();
         if (!isSet(campaignId)) {
             throw new RuntimeException("Error: You need to specify the campaignId.\n");
         } else {
-            return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/campaigns/" + campaignId + "/blacklists"), PTCampaignBlacklists.class);
+            return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/campaigns/" + campaignId + "/blacklists"), SBSmsCampaignBlacklists.class);
         }
     }
 }

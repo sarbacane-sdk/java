@@ -1,29 +1,26 @@
-package com.sarbacane.api.Lists;
+package com.sarbacane.api.Campaigns;
 
 import com.fasterxml.jackson.annotation.*;
-import com.sarbacane.api.Fields.PTField;
 
 import javax.annotation.Generated;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("org.jsonschema2pojo")
 @JsonPropertyOrder({
         "id",
-        "name",
-        "fields"
+        "identifier",
+        "message"
 })
-public class PTList {
+public class SBSmsCampaignReply {
 
     @JsonProperty("id")
     private String id;
-    @JsonProperty("name")
-    private String name;
-    @JsonProperty("fields")
-    private List<PTField> PTFields = new ArrayList<PTField>();
+    @JsonProperty("identifier")
+    private String identifier;
+    @JsonProperty("message")
+    private String message;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -31,19 +28,19 @@ public class PTList {
      * No args constructor for use in serialization
      *
      */
-    public PTList() {
+    public SBSmsCampaignReply() {
     }
 
     /**
      *
+     * @param message
      * @param id
-     * @param name
-     * @param PTFields
+     * @param identifier
      */
-    public PTList(String id, String name, List<PTField> PTFields) {
+    public SBSmsCampaignReply(String id, String identifier, String message) {
         this.id = id;
-        this.name = name;
-        this.PTFields = PTFields;
+        this.identifier = identifier;
+        this.message = message;
     }
 
     /**
@@ -66,7 +63,7 @@ public class PTList {
         this.id = id;
     }
 
-    public PTList withId(String id) {
+    public SBSmsCampaignReply withId(String id) {
         this.id = id;
         return this;
     }
@@ -74,50 +71,50 @@ public class PTList {
     /**
      *
      * @return
-     * The name
+     * The identifier
      */
-    @JsonProperty("name")
-    public String getName() {
-        return name;
+    @JsonProperty("identifier")
+    public String getIdentifier() {
+        return identifier;
     }
 
     /**
      *
-     * @param name
-     * The name
+     * @param identifier
+     * The identifier
      */
-    @JsonProperty("name")
-    public void setName(String name) {
-        this.name = name;
+    @JsonProperty("identifier")
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier;
     }
 
-    public PTList withName(String name) {
-        this.name = name;
+    public SBSmsCampaignReply withIdentifier(String identifier) {
+        this.identifier = identifier;
         return this;
     }
 
     /**
      *
      * @return
-     * The fields
+     * The message
      */
-    @JsonProperty("fields")
-    public List<PTField> getPTFields() {
-        return PTFields;
+    @JsonProperty("message")
+    public String getMessage() {
+        return message;
     }
 
     /**
      *
-     * @param PTFields
-     * The fields
+     * @param message
+     * The message
      */
-    @JsonProperty("fields")
-    public void setPTFields(List<PTField> PTFields) {
-        this.PTFields = PTFields;
+    @JsonProperty("message")
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public PTList withFields(List<PTField> PTFields) {
-        this.PTFields = PTFields;
+    public SBSmsCampaignReply withMessage(String message) {
+        this.message = message;
         return this;
     }
 
@@ -131,17 +128,17 @@ public class PTList {
         this.additionalProperties.put(name, value);
     }
 
-    public PTList withAdditionalProperty(String name, Object value) {
+    public SBSmsCampaignReply withAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
         return this;
     }
 
     @Override
     public String toString() {
-        return "PTList{" +
+        return "PTCampaignReply{" +
                 "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", fields=" + PTFields +
+                ", identifier='" + identifier + '\'' +
+                ", message='" + message + '\'' +
                 ", additionalProperties=" + additionalProperties +
                 '}';
     }

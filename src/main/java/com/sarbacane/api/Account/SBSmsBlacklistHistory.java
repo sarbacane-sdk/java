@@ -12,7 +12,7 @@ import java.util.Map;
         "date",
         "campaignId"
 })
-public class PTHistory {
+public class SBSmsBlacklistHistory {
 
     @JsonProperty("date")
     private Long date;
@@ -25,7 +25,7 @@ public class PTHistory {
      * No args constructor for use in serialization
      *
      */
-    public PTHistory() {
+    public SBSmsBlacklistHistory() {
     }
 
     /**
@@ -33,7 +33,7 @@ public class PTHistory {
      * @param campaignId
      * @param date
      */
-    public PTHistory(Long date, String campaignId) {
+    public SBSmsBlacklistHistory(Long date, String campaignId) {
         this.date = date;
         this.campaignId = campaignId;
     }
@@ -58,7 +58,7 @@ public class PTHistory {
         this.date = date;
     }
 
-    public PTHistory withDate(Long date) {
+    public SBSmsBlacklistHistory withDate(Long date) {
         this.date = date;
         return this;
     }
@@ -83,7 +83,7 @@ public class PTHistory {
         this.campaignId = campaignId;
     }
 
-    public PTHistory withCampaignId(String campaignId) {
+    public SBSmsBlacklistHistory withCampaignId(String campaignId) {
         this.campaignId = campaignId;
         return this;
     }
@@ -98,7 +98,7 @@ public class PTHistory {
         this.additionalProperties.put(name, value);
     }
 
-    public PTHistory withAdditionalProperty(String name, Object value) {
+    public SBSmsBlacklistHistory withAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
         return this;
     }

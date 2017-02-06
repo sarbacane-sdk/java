@@ -17,7 +17,7 @@ import java.util.Map;
         "blacklistId",
         "history"
 })
-public class PTBounce {
+public class SBSmsAccountUnsubscribers {
 
     @JsonProperty("id")
     private String id;
@@ -28,7 +28,7 @@ public class PTBounce {
     @JsonProperty("blacklistId")
     private String blacklistId;
     @JsonProperty("history")
-    private List<PTHistory> PTHistory = new ArrayList<PTHistory>();
+    private List<SBSmsBlacklistHistory> SBSmsBlacklistHistory = new ArrayList<SBSmsBlacklistHistory>();
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -36,23 +36,23 @@ public class PTBounce {
      * No args constructor for use in serialization
      *
      */
-    public PTBounce() {
+    public SBSmsAccountUnsubscribers() {
     }
 
     /**
      *
-     * @param PTHistory
+     * @param SBSmsBlacklistHistory
      * @param id
      * @param blacklistId
      * @param identifier
      * @param deleted
      */
-    public PTBounce(String id, Boolean deleted, String identifier, String blacklistId, List<PTHistory> PTHistory) {
+    public SBSmsAccountUnsubscribers(String id, Boolean deleted, String identifier, String blacklistId, List<SBSmsBlacklistHistory> SBSmsBlacklistHistory) {
         this.id = id;
         this.deleted = deleted;
         this.identifier = identifier;
         this.blacklistId = blacklistId;
-        this.PTHistory = PTHistory;
+        this.SBSmsBlacklistHistory = SBSmsBlacklistHistory;
     }
 
     /**
@@ -75,7 +75,7 @@ public class PTBounce {
         this.id = id;
     }
 
-    public PTBounce withId(String id) {
+    public SBSmsAccountUnsubscribers withId(String id) {
         this.id = id;
         return this;
     }
@@ -100,7 +100,7 @@ public class PTBounce {
         this.deleted = deleted;
     }
 
-    public PTBounce withDeleted(Boolean deleted) {
+    public SBSmsAccountUnsubscribers withDeleted(Boolean deleted) {
         this.deleted = deleted;
         return this;
     }
@@ -125,7 +125,7 @@ public class PTBounce {
         this.identifier = identifier;
     }
 
-    public PTBounce withIdentifier(String identifier) {
+    public SBSmsAccountUnsubscribers withIdentifier(String identifier) {
         this.identifier = identifier;
         return this;
     }
@@ -150,7 +150,7 @@ public class PTBounce {
         this.blacklistId = blacklistId;
     }
 
-    public PTBounce withBlacklistId(String blacklistId) {
+    public SBSmsAccountUnsubscribers withBlacklistId(String blacklistId) {
         this.blacklistId = blacklistId;
         return this;
     }
@@ -161,22 +161,22 @@ public class PTBounce {
      * The history
      */
     @JsonProperty("history")
-    public List<PTHistory> getPTHistory() {
-        return PTHistory;
+    public List<SBSmsBlacklistHistory> getSBSmsBlacklistHistory() {
+        return SBSmsBlacklistHistory;
     }
 
     /**
      *
-     * @param PTHistory
+     * @param SBSmsBlacklistHistory
      * The history
      */
     @JsonProperty("history")
-    public void setPTHistory(List<PTHistory> PTHistory) {
-        this.PTHistory = PTHistory;
+    public void setSBSmsBlacklistHistory(List<SBSmsBlacklistHistory> SBSmsBlacklistHistory) {
+        this.SBSmsBlacklistHistory = SBSmsBlacklistHistory;
     }
 
-    public PTBounce withHistory(List<PTHistory> PTHistory) {
-        this.PTHistory = PTHistory;
+    public SBSmsAccountUnsubscribers withHistory(List<SBSmsBlacklistHistory> SBSmsBlacklistHistory) {
+        this.SBSmsBlacklistHistory = SBSmsBlacklistHistory;
         return this;
     }
 
@@ -190,19 +190,19 @@ public class PTBounce {
         this.additionalProperties.put(name, value);
     }
 
-    public PTBounce withAdditionalProperty(String name, Object value) {
+    public SBSmsAccountUnsubscribers withAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
         return this;
     }
 
     @Override
     public String toString() {
-        return "PTBounce{" +
+        return "PTUnsubscriber{" +
                 "id='" + id + '\'' +
                 ", deleted=" + deleted +
                 ", identifier='" + identifier + '\'' +
                 ", blacklistId='" + blacklistId + '\'' +
-                ", PTHistory=" + PTHistory +
+                ", PTHistory=" + SBSmsBlacklistHistory +
                 ", additionalProperties=" + additionalProperties +
                 '}';
     }

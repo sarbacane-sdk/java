@@ -2,7 +2,7 @@ package com.sarbacane.api.Base;
 
 
 import com.sarbacane.api.Authentication.AuthenticationManager;
-import com.sarbacane.api.Messages.SBEmail;
+import com.sarbacane.api.Messages.SBEmailMessage;
 import com.sun.mail.smtp.SMTPTransport;
 
 import javax.mail.Message;
@@ -49,7 +49,7 @@ public class BaseManager {
 //
 //    }
 
-    protected static String sendTransport(SBEmail email) throws MessagingException {
+    protected static String sendTransport(SBEmailMessage email) throws MessagingException {
     try {
         props.put("mail.smtp.host", smtpHost);
         props.put("mail.smtp.starttls.enable", "true");

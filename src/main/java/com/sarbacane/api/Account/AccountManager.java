@@ -28,37 +28,37 @@ public class AccountManager extends BaseManager {
 
     private static ObjectMapper mapper = new ObjectMapper();
 
-    public static PTAccount accountStats() throws IOException {
+    public static SBSmsAccount accountStats() throws IOException {
         AuthenticationManager.ensureSmsTokens();
-        return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/account/stats"), PTAccount.class);
+        return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/account/stats"), SBSmsAccount.class);
     }
 
-    public static List<PTBounce> accountBouncesGet() throws IOException {
+    public static List<SBSmsAccountBounces> accountBouncesGet() throws IOException {
         AuthenticationManager.ensureSmsTokens();
-        return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/bounces/default/contacts"), new TypeReference<List<PTBounce>>() {});
+        return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/bounces/default/contacts"), new TypeReference<List<SBSmsAccountBounces>>() {});
     }
 
-    public static List<PTUnsubscriber> accountUnsubscribersGet() throws IOException {
+    public static List<SBSmsAccountUnsubscribers> accountUnsubscribersGet() throws IOException {
         AuthenticationManager.ensureSmsTokens();
-        return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/unsubscribers/default/contacts"), new TypeReference<List<PTUnsubscriber>>() {});
+        return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/unsubscribers/default/contacts"), new TypeReference<List<SBSmsAccountUnsubscribers>>() {});
     }
 
-    public static PTBounce accountBouncesCreate(String identifier) throws IOException {
+    public static SBSmsAccountBounces accountBouncesCreate(String identifier) throws IOException {
         AuthenticationManager.ensureSmsTokens();
-        PTBounce ptb = new PTBounce();
+        SBSmsAccountBounces ptb = new SBSmsAccountBounces();
         ptb.setIdentifier(identifier);
         ObjectMapper mapper = new ObjectMapper();
         String json = mapper.writeValueAsString(ptb);
-        return mapper.readValue(BaseManager.httpPost(BaseManager.baseURL + "/bounces/default/contacts", json), PTBounce.class);
+        return mapper.readValue(BaseManager.httpPost(BaseManager.baseURL + "/bounces/default/contacts", json), SBSmsAccountBounces.class);
     }
 
-    public static PTUnsubscriber accountUnsubscribersCreate(String identifier) throws IOException {
+    public static SBSmsAccountUnsubscribers accountUnsubscribersCreate(String identifier) throws IOException {
         AuthenticationManager.ensureSmsTokens();
-        PTBounce ptb = new PTBounce();
+        SBSmsAccountBounces ptb = new SBSmsAccountBounces();
         ptb.setIdentifier(identifier);
         ObjectMapper mapper = new ObjectMapper();
         String json = mapper.writeValueAsString(ptb);
-        return mapper.readValue(BaseManager.httpPost(BaseManager.baseURL + "/bounces/default/contacts", json), PTUnsubscriber.class);
+        return mapper.readValue(BaseManager.httpPost(BaseManager.baseURL + "/bounces/default/contacts", json), SBSmsAccountUnsubscribers.class);
     }
 
     public static String accountBouncesDeleteByIdentifier(String identifier) throws IOException {

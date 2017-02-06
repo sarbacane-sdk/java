@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by guru on 30/01/17.
  */
-public class SBEmail extends MessagesManager {
+public class SBEmailMessage extends MessagesManager {
     private String mailFrom;
     private String subject;
     private String message;
@@ -14,7 +14,7 @@ public class SBEmail extends MessagesManager {
 
     private List<String> recipients = new ArrayList<String>();
 
-    public SBEmail() {
+    public SBEmailMessage() {
 
     }
 

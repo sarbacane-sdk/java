@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * Created by guru on 08/04/15.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class PTMessagesStats {
+public class SBSmsMessageStats {
     private Integer sent;
     private Integer submitted;
     private Integer delivered;

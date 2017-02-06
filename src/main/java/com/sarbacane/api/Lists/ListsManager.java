@@ -22,28 +22,28 @@ public class ListsManager extends BaseManager {
 
     private static ObjectMapper mapper = new ObjectMapper();
 
-    public static PTList listsCreate(String name) throws IOException {
+    public static SBSmsList listsCreate(String name) throws IOException {
         AuthenticationManager.ensureSmsTokens();
         if (!isSet(name)) {
             throw new RuntimeException("Error: name is required.\n");
         } else {
             ObjectMapper mapper = new ObjectMapper();
             String json = "{\"name\": \"" + name + "\"}" ;//mapper.writeValueAsString(obj)
-            return mapper.readValue(BaseManager.httpPost(BaseManager.baseURL + "/lists", json), PTList.class);
+            return mapper.readValue(BaseManager.httpPost(BaseManager.baseURL + "/lists", json), SBSmsList.class);
         }
     }
 
-    public static List<PTList> listsGet () throws IOException {
+    public static List<SBSmsList> listsGet () throws IOException {
         AuthenticationManager.ensureSmsTokens();
-        return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/lists"), new TypeReference<List<PTList>>(){});
+        return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/lists"), new TypeReference<List<SBSmsList>>(){});
     }
 
-    public static PTList listsGet (String listId) throws IOException {
+    public static SBSmsList listsGet (String listId) throws IOException {
         AuthenticationManager.ensureSmsTokens();
         if (!isSet(listId)) {
             throw new RuntimeException("Error: listId is required.\n");
         } else {
-            return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/lists/" + listId), PTList.class);
+            return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/lists/" + listId), SBSmsList.class);
         }
     }
 

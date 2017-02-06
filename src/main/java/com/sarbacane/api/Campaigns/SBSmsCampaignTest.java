@@ -8,7 +8,7 @@ import com.sarbacane.api.Base.BaseManager;
  * Created by guru on 06/10/15.
  */
 @JsonIgnoreProperties({"id"})
-public class PTCampaignTest extends BaseManager {
+public class SBSmsCampaignTest extends BaseManager {
     private String id;
     private String identifier;
 

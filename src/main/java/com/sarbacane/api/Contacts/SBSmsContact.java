@@ -12,7 +12,7 @@ import java.util.Map;
  */
 
 @JsonIgnoreProperties({"listId","request"})
-public class PTContact extends ListsManager {
+public class SBSmsContact extends ListsManager {
     public String id=null;
     public String listId=null;
     public String identifier=null;

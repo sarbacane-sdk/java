@@ -19,27 +19,27 @@ import java.util.List;
 
 public class ContactsManager extends BaseManager {
 
-    public static PTContact contactsCreate(PTContact newContact) throws IOException {
+    public static SBSmsContact contactsCreate(SBSmsContact newContact) throws IOException {
         AuthenticationManager.ensureSmsTokens();
         if (!isSet(newContact.getListId())) {
             throw new RuntimeException("Error: listId is required.\n");
         } else {
             ObjectMapper mapper = new ObjectMapper();
             String json = mapper.writeValueAsString(newContact);
-            return mapper.readValue(BaseManager.httpPost(BaseManager.baseURL + "/lists/" + newContact.getListId() + "/contacts", json),PTContact.class);
+            return mapper.readValue(BaseManager.httpPost(BaseManager.baseURL + "/lists/" + newContact.getListId() + "/contacts", json),SBSmsContact.class);
         }
     }
 
-    public static List<PTContact> contactsGet(String listId) throws IOException {
+    public static List<SBSmsContact> contactsGet(String listId) throws IOException {
         AuthenticationManager.ensureSmsTokens();
         if(!isSet(listId)) {
             throw new RuntimeException("Error: listId is required.\n");
         }
         ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/lists/" + listId + "/contacts"), new TypeReference<List<PTContact>>(){});
+        return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/lists/" + listId + "/contacts"), new TypeReference<List<SBSmsContact>>(){});
     }
 
-    public static String contactsDelete (PTContact newContact) throws IOException {
+    public static String contactsDelete (SBSmsContact newContact) throws IOException {
         AuthenticationManager.ensureSmsTokens();
         if (!isSet(newContact.getListId())) {
             throw new RuntimeException("Error: listId is required.\n");

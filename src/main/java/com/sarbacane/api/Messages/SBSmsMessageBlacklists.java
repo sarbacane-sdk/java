@@ -10,7 +10,7 @@ import java.util.List;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 
-public class PTMessagesBlacklists {
+public class SBSmsMessageBlacklists {
 
     private Bounces bounces;
     private Unsubscribers unsubscribers;

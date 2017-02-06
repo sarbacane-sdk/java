@@ -7,7 +7,7 @@ import java.util.List;
  * Created by guru on 08/04/15.
  */
 
-public class PTCampaignBlacklists {
+public class SBSmsCampaignBlacklists {
 
     private Bounces bounces;
     private Unsubscribers unsubscribers;

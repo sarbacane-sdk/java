@@ -5,7 +5,7 @@ package com.sarbacane.api.Campaigns;
  */
 
 
-public class PTCampaignStats {
+public class SBSmsCampaignStats {
     private String id;
     private String name;
     private String state;

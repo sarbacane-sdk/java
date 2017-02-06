@@ -3,7 +3,7 @@ package com.sarbacane.api.Account;
 /**
  * Created by guru on 21/04/15.
  */
-public class PTAccount extends AccountManager {
+public class SBSmsAccount extends AccountManager {
     private Long credits;
     private Long delivered;
     private Long sent;

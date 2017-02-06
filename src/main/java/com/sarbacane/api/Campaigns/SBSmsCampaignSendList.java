@@ -12,7 +12,7 @@ import java.util.Map;
 @JsonPropertyOrder({
         "id"
 })
-public class PTSendList {
+public class SBSmsCampaignSendList {
 
     @JsonProperty("id")
     private String id;
@@ -23,14 +23,14 @@ public class PTSendList {
      * No args constructor for use in serialization
      *
      */
-    public PTSendList() {
+    public SBSmsCampaignSendList() {
     }
 
     /**
      *
      * @param id
      */
-    public PTSendList(String id) {
+    public SBSmsCampaignSendList(String id) {
         this.id = id;
     }
 
@@ -54,7 +54,7 @@ public class PTSendList {
         this.id = id;
     }
 
-    public PTSendList withId(String id) {
+    public SBSmsCampaignSendList withId(String id) {
         this.id = id;
         return this;
     }
@@ -69,7 +69,7 @@ public class PTSendList {
         this.additionalProperties.put(name, value);
     }
 
-    public PTSendList withAdditionalProperty(String name, Object value) {
+    public SBSmsCampaignSendList withAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
         return this;
     }

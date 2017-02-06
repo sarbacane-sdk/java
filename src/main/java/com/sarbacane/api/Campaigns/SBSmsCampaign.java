@@ -24,7 +24,7 @@ import java.util.Map;
         "keepList",
         "totalCredits"
 })
-public class PTCampaign {
+public class SBSmsCampaign {
 
     @JsonProperty("id")
     private String id;
@@ -33,7 +33,7 @@ public class PTCampaign {
     @JsonProperty("message")
     private String message;
     @JsonProperty("sendList")
-    private PTSendList PTSendList;
+    private SBSmsCampaignSendList SBSmsCampaignSendList;
     @JsonProperty("state")
     private String state;
     @JsonProperty("name")
@@ -61,7 +61,7 @@ public class PTCampaign {
      * No args constructor for use in serialization
      *
      */
-    public PTCampaign() {
+    public SBSmsCampaign() {
     }
 
     /**
@@ -77,15 +77,15 @@ public class PTCampaign {
      * @param id
      * @param campaignId
      * @param message
-     * @param PTSendList
+     * @param SBSmsCampaignSendList
      * @param name
      * @param sourceAddress
      */
-    public PTCampaign(String id, String campaignId, String message, PTSendList PTSendList, String state, String name, String type, String sourceAddress, Long date, Boolean flash, Boolean cleanBounces, Boolean cleanUnsubscribers, Boolean keepList, Double totalCredits) {
+    public SBSmsCampaign(String id, String campaignId, String message, SBSmsCampaignSendList SBSmsCampaignSendList, String state, String name, String type, String sourceAddress, Long date, Boolean flash, Boolean cleanBounces, Boolean cleanUnsubscribers, Boolean keepList, Double totalCredits) {
         this.id = id;
         this.campaignId = campaignId;
         this.message = message;
-        this.PTSendList = PTSendList;
+        this.SBSmsCampaignSendList = SBSmsCampaignSendList;
         this.state = state;
         this.name = name;
         this.type = type;
@@ -118,7 +118,7 @@ public class PTCampaign {
         this.id = id;
     }
 
-    public PTCampaign withId(String id) {
+    public SBSmsCampaign withId(String id) {
         this.id = id;
         return this;
     }
@@ -144,7 +144,7 @@ public class PTCampaign {
         this.campaignId = campaignId;
     }
 
-    public PTCampaign withCampaignId(String campaignId) {
+    public SBSmsCampaign withCampaignId(String campaignId) {
         this.campaignId = campaignId;
         return this;
     }
@@ -170,7 +170,7 @@ public class PTCampaign {
         this.message = message;
     }
 
-    public PTCampaign withMessage(String message) {
+    public SBSmsCampaign withMessage(String message) {
         this.message = message;
         return this;
     }
@@ -181,22 +181,22 @@ public class PTCampaign {
      * The sendList
      */
     @JsonProperty("sendList")
-    public PTSendList getPTSendList() {
-        return PTSendList;
+    public SBSmsCampaignSendList getSBSmsCampaignSendList() {
+        return SBSmsCampaignSendList;
     }
 
     /**
      *
-     * @param PTSendList
+     * @param SBSmsCampaignSendList
      * The sendList
      */
     @JsonProperty("sendList")
-    public void setPTSendList(PTSendList PTSendList) {
-        this.PTSendList = PTSendList;
+    public void setSBSmsCampaignSendList(SBSmsCampaignSendList SBSmsCampaignSendList) {
+        this.SBSmsCampaignSendList = SBSmsCampaignSendList;
     }
 
-    public PTCampaign withSendList(PTSendList PTSendList) {
-        this.PTSendList = PTSendList;
+    public SBSmsCampaign withSendList(SBSmsCampaignSendList SBSmsCampaignSendList) {
+        this.SBSmsCampaignSendList = SBSmsCampaignSendList;
         return this;
     }
 
@@ -220,7 +220,7 @@ public class PTCampaign {
         this.state = state;
     }
 
-    public PTCampaign withState(String state) {
+    public SBSmsCampaign withState(String state) {
         this.state = state;
         return this;
     }
@@ -245,7 +245,7 @@ public class PTCampaign {
         this.name = name;
     }
 
-    public PTCampaign withName(String name) {
+    public SBSmsCampaign withName(String name) {
         this.name = name;
         return this;
     }
@@ -270,7 +270,7 @@ public class PTCampaign {
         this.type = type;
     }
 
-    public PTCampaign withType(String type) {
+    public SBSmsCampaign withType(String type) {
         this.type = type;
         return this;
     }
@@ -295,7 +295,7 @@ public class PTCampaign {
         this.sourceAddress = sourceAddress;
     }
 
-    public PTCampaign withSourceAddress(String sourceAddress) {
+    public SBSmsCampaign withSourceAddress(String sourceAddress) {
         this.sourceAddress = sourceAddress;
         return this;
     }
@@ -320,7 +320,7 @@ public class PTCampaign {
         this.date = date;
     }
 
-    public PTCampaign withDate(Long date) {
+    public SBSmsCampaign withDate(Long date) {
         this.date = date;
         return this;
     }
@@ -345,7 +345,7 @@ public class PTCampaign {
         this.flash = flash;
     }
 
-    public PTCampaign withFlash(Boolean flash) {
+    public SBSmsCampaign withFlash(Boolean flash) {
         this.flash = flash;
         return this;
     }
@@ -370,7 +370,7 @@ public class PTCampaign {
         this.cleanBounces = cleanBounces;
     }
 
-    public PTCampaign withCleanBounces(Boolean cleanBounces) {
+    public SBSmsCampaign withCleanBounces(Boolean cleanBounces) {
         this.cleanBounces = cleanBounces;
         return this;
     }
@@ -395,7 +395,7 @@ public class PTCampaign {
         this.cleanUnsubscribers = cleanUnsubscribers;
     }
 
-    public PTCampaign withCleanUnsubscribers(Boolean cleanUnsubscribers) {
+    public SBSmsCampaign withCleanUnsubscribers(Boolean cleanUnsubscribers) {
         this.cleanUnsubscribers = cleanUnsubscribers;
         return this;
     }
@@ -420,7 +420,7 @@ public class PTCampaign {
         this.keepList = keepList;
     }
 
-    public PTCampaign withKeepList(Boolean keepList) {
+    public SBSmsCampaign withKeepList(Boolean keepList) {
         this.keepList = keepList;
         return this;
     }
@@ -445,7 +445,7 @@ public class PTCampaign {
         this.totalCredits = totalCredits;
     }
 
-    public PTCampaign withTotalCredits(Double totalCredits) {
+    public SBSmsCampaign withTotalCredits(Double totalCredits) {
         this.totalCredits = totalCredits;
         return this;
     }
@@ -460,7 +460,7 @@ public class PTCampaign {
         this.additionalProperties.put(name, value);
     }
 
-    public PTCampaign withAdditionalProperty(String name, Object value) {
+    public SBSmsCampaign withAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
         return this;
     }
@@ -471,7 +471,7 @@ public class PTCampaign {
                 "id='" + id + '\'' +
                 ", campaignId='" + campaignId + '\'' +
                 ", message='" + message + '\'' +
-                ", PTSendList=" + PTSendList +
+                ", PTSendList=" + SBSmsCampaignSendList +
                 ", state='" + state + '\'' +
                 ", name='" + name + '\'' +
                 ", type='" + type + '\'' +

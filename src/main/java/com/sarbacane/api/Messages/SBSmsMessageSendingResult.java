@@ -1,4 +1,4 @@
-package com.sarbacane.api.Campaigns;
+package com.sarbacane.api.Messages;
 
 import com.fasterxml.jackson.annotation.*;
 
@@ -9,14 +9,14 @@ import java.util.Map;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("org.jsonschema2pojo")
 @JsonPropertyOrder({
-        "campaignId",
+        "snapshotId",
         "id",
         "creditsUsed"
 })
-public class PTResult {
+public class SBSmsMessageSendingResult {
 
-    @JsonProperty("campaignId")
-    private String campaignId;
+    @JsonProperty("snapshotId")
+    private Long snapshotId;
     @JsonProperty("id")
     private String id;
     @JsonProperty("creditsUsed")
@@ -28,17 +28,17 @@ public class PTResult {
      * No args constructor for use in serialization
      *
      */
-    public PTResult() {
+    public SBSmsMessageSendingResult() {
     }
 
     /**
      *
      * @param id
-     * @param campaignId
+     * @param snapshotId
      * @param creditsUsed
      */
-    public PTResult(String campaignId, String id, String creditsUsed) {
-        this.campaignId = campaignId;
+    public SBSmsMessageSendingResult(Long snapshotId, String id, String creditsUsed) {
+        this.snapshotId = snapshotId;
         this.id = id;
         this.creditsUsed = creditsUsed;
     }
@@ -46,25 +46,25 @@ public class PTResult {
     /**
      *
      * @return
-     * The campaignId
+     * The snapshotId
      */
-    @JsonProperty("campaignId")
-    public String getCampaignId() {
-        return campaignId;
+    @JsonProperty("snapshotId")
+    public Long getsnapshotId() {
+        return snapshotId;
     }
 
     /**
      *
-     * @param campaignId
-     * The campaignId
+     * @param snapshotId
+     * The snapshotId
      */
-    @JsonProperty("campaignId")
-    public void setCampaignId(String campaignId) {
-        this.campaignId = campaignId;
+    @JsonProperty("snapshotId")
+    public void setsnapshotId(Long snapshotId) {
+        this.snapshotId = snapshotId;
     }
 
-    public PTResult withCampaignId(String campaignId) {
-        this.campaignId = campaignId;
+    public SBSmsMessageSendingResult withsnapshotId(Long snapshotId) {
+        this.snapshotId = snapshotId;
         return this;
     }
 
@@ -88,7 +88,7 @@ public class PTResult {
         this.id = id;
     }
 
-    public PTResult withId(String id) {
+    public SBSmsMessageSendingResult withId(String id) {
         this.id = id;
         return this;
     }
@@ -113,7 +113,7 @@ public class PTResult {
         this.creditsUsed = creditsUsed;
     }
 
-    public PTResult withCreditsUsed(String creditsUsed) {
+    public SBSmsMessageSendingResult withCreditsUsed(String creditsUsed) {
         this.creditsUsed = creditsUsed;
         return this;
     }
@@ -128,7 +128,7 @@ public class PTResult {
         this.additionalProperties.put(name, value);
     }
 
-    public PTResult withAdditionalProperty(String name, Object value) {
+    public SBSmsMessageSendingResult withAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
         return this;
     }
@@ -136,7 +136,7 @@ public class PTResult {
     @Override
     public String toString() {
         return "PTResult{" +
-                "campaignId='" + campaignId + '\'' +
+                "snapshotId='" + snapshotId + '\'' +
                 ", id='" + id + '\'' +
                 ", creditsUsed='" + creditsUsed + '\'' +
                 ", additionalProperties=" + additionalProperties +

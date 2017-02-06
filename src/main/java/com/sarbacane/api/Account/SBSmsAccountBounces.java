@@ -17,7 +17,7 @@ import java.util.Map;
         "blacklistId",
         "history"
 })
-public class PTUnsubscriber {
+public class SBSmsAccountBounces {
 
     @JsonProperty("id")
     private String id;
@@ -28,7 +28,7 @@ public class PTUnsubscriber {
     @JsonProperty("blacklistId")
     private String blacklistId;
     @JsonProperty("history")
-    private List<PTHistory> PTHistory = new ArrayList<PTHistory>();
+    private List<SBSmsBlacklistHistory> SBSmsBlacklistHistory = new ArrayList<SBSmsBlacklistHistory>();
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -36,23 +36,23 @@ public class PTUnsubscriber {
      * No args constructor for use in serialization
      *
      */
-    public PTUnsubscriber() {
+    public SBSmsAccountBounces() {
     }
 
     /**
      *
-     * @param PTHistory
+     * @param SBSmsBlacklistHistory
      * @param id
      * @param blacklistId
      * @param identifier
      * @param deleted
      */
-    public PTUnsubscriber(String id, Boolean deleted, String identifier, String blacklistId, List<PTHistory> PTHistory) {
+    public SBSmsAccountBounces(String id, Boolean deleted, String identifier, String blacklistId, List<SBSmsBlacklistHistory> SBSmsBlacklistHistory) {
         this.id = id;
         this.deleted = deleted;
         this.identifier = identifier;
         this.blacklistId = blacklistId;
-        this.PTHistory = PTHistory;
+        this.SBSmsBlacklistHistory = SBSmsBlacklistHistory;
     }
 
     /**
@@ -75,7 +75,7 @@ public class PTUnsubscriber {
         this.id = id;
     }
 
-    public PTUnsubscriber withId(String id) {
+    public SBSmsAccountBounces withId(String id) {
         this.id = id;
         return this;
     }
@@ -100,7 +100,7 @@ public class PTUnsubscriber {
         this.deleted = deleted;
     }
 
-    public PTUnsubscriber withDeleted(Boolean deleted) {
+    public SBSmsAccountBounces withDeleted(Boolean deleted) {
         this.deleted = deleted;
         return this;
     }
@@ -125,7 +125,7 @@ public class PTUnsubscriber {
         this.identifier = identifier;
     }
 
-    public PTUnsubscriber withIdentifier(String identifier) {
+    public SBSmsAccountBounces withIdentifier(String identifier) {
         this.identifier = identifier;
         return this;
     }
@@ -150,7 +150,7 @@ public class PTUnsubscriber {
         this.blacklistId = blacklistId;
     }
 
-    public PTUnsubscriber withBlacklistId(String blacklistId) {
+    public SBSmsAccountBounces withBlacklistId(String blacklistId) {
         this.blacklistId = blacklistId;
         return this;
     }
@@ -161,22 +161,22 @@ public class PTUnsubscriber {
      * The history
      */
     @JsonProperty("history")
-    public List<PTHistory> getPTHistory() {
-        return PTHistory;
+    public List<SBSmsBlacklistHistory> getSBSmsBlacklistHistory() {
+        return SBSmsBlacklistHistory;
     }
 
     /**
      *
-     * @param PTHistory
+     * @param SBSmsBlacklistHistory
      * The history
      */
     @JsonProperty("history")
-    public void setPTHistory(List<PTHistory> PTHistory) {
-        this.PTHistory = PTHistory;
+    public void setSBSmsBlacklistHistory(List<SBSmsBlacklistHistory> SBSmsBlacklistHistory) {
+        this.SBSmsBlacklistHistory = SBSmsBlacklistHistory;
     }
 
-    public PTUnsubscriber withHistory(List<PTHistory> PTHistory) {
-        this.PTHistory = PTHistory;
+    public SBSmsAccountBounces withHistory(List<SBSmsBlacklistHistory> SBSmsBlacklistHistory) {
+        this.SBSmsBlacklistHistory = SBSmsBlacklistHistory;
         return this;
     }
 
@@ -190,19 +190,19 @@ public class PTUnsubscriber {
         this.additionalProperties.put(name, value);
     }
 
-    public PTUnsubscriber withAdditionalProperty(String name, Object value) {
+    public SBSmsAccountBounces withAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
         return this;
     }
 
     @Override
     public String toString() {
-        return "PTUnsubscriber{" +
+        return "PTBounce{" +
                 "id='" + id + '\'' +
                 ", deleted=" + deleted +
                 ", identifier='" + identifier + '\'' +
                 ", blacklistId='" + blacklistId + '\'' +
-                ", PTHistory=" + PTHistory +
+                ", PTHistory=" + SBSmsBlacklistHistory +
                 ", additionalProperties=" + additionalProperties +
                 '}';
     }

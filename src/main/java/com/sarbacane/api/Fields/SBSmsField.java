@@ -15,7 +15,7 @@ import java.util.Map;
         "listId",
         "format"
 })
-public class PTField {
+public class SBSmsField {
 
     @JsonProperty("id")
     private String id;
@@ -34,7 +34,7 @@ public class PTField {
      * No args constructor for use in serialization
      *
      */
-    public PTField() {
+    public SBSmsField() {
     }
 
     /**
@@ -45,7 +45,7 @@ public class PTField {
      * @param format
      * @param type
      */
-    public PTField(String id, String name, String type, String listId, String format) {
+    public SBSmsField(String id, String name, String type, String listId, String format) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -73,7 +73,7 @@ public class PTField {
         this.id = id;
     }
 
-    public PTField withId(String id) {
+    public SBSmsField withId(String id) {
         this.id = id;
         return this;
     }
@@ -98,7 +98,7 @@ public class PTField {
         this.name = name;
     }
 
-    public PTField withName(String name) {
+    public SBSmsField withName(String name) {
         this.name = name;
         return this;
     }
@@ -123,7 +123,7 @@ public class PTField {
         this.type = type;
     }
 
-    public PTField withType(String type) {
+    public SBSmsField withType(String type) {
         this.type = type;
         return this;
     }
@@ -148,7 +148,7 @@ public class PTField {
         this.listId = listId;
     }
 
-    public PTField withListId(String listId) {
+    public SBSmsField withListId(String listId) {
         this.listId = listId;
         return this;
     }
@@ -173,7 +173,7 @@ public class PTField {
         this.format = format;
     }
 
-    public PTField withFormat(String format) {
+    public SBSmsField withFormat(String format) {
         this.format = format;
         return this;
     }
@@ -188,7 +188,7 @@ public class PTField {
         this.additionalProperties.put(name, value);
     }
 
-    public PTField withAdditionalProperty(String name, Object value) {
+    public SBSmsField withAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
         return this;
     }

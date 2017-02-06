@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * Created by guru on 08/04/15.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class PTSnapshot {
+public class SBSmsSnapshot {
     private Long delivered;
     private Integer id;
     private Long sent;
@@ -16,7 +16,7 @@ public class PTSnapshot {
     private Long reply;
     private String test;
 
-    public PTSnapshot(){}
+    public SBSmsSnapshot(){}
 
     public Long getDelivered() {
         return delivered;

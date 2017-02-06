@@ -1,26 +1,29 @@
-package com.sarbacane.api.Campaigns;
+package com.sarbacane.api.Lists;
 
 import com.fasterxml.jackson.annotation.*;
+import com.sarbacane.api.Fields.SBSmsField;
 
 import javax.annotation.Generated;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("org.jsonschema2pojo")
 @JsonPropertyOrder({
         "id",
-        "identifier",
-        "message"
+        "name",
+        "fields"
 })
-public class PTCampaignReply {
+public class SBSmsList {
 
     @JsonProperty("id")
     private String id;
-    @JsonProperty("identifier")
-    private String identifier;
-    @JsonProperty("message")
-    private String message;
+    @JsonProperty("name")
+    private String name;
+    @JsonProperty("fields")
+    private List<SBSmsField> SBSmsFields = new ArrayList<SBSmsField>();
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -28,19 +31,19 @@ public class PTCampaignReply {
      * No args constructor for use in serialization
      *
      */
-    public PTCampaignReply() {
+    public SBSmsList() {
     }
 
     /**
      *
-     * @param message
      * @param id
-     * @param identifier
+     * @param name
+     * @param SBSmsFields
      */
-    public PTCampaignReply(String id, String identifier, String message) {
+    public SBSmsList(String id, String name, List<SBSmsField> SBSmsFields) {
         this.id = id;
-        this.identifier = identifier;
-        this.message = message;
+        this.name = name;
+        this.SBSmsFields = SBSmsFields;
     }
 
     /**
@@ -63,7 +66,7 @@ public class PTCampaignReply {
         this.id = id;
     }
 
-    public PTCampaignReply withId(String id) {
+    public SBSmsList withId(String id) {
         this.id = id;
         return this;
     }
@@ -71,50 +74,50 @@ public class PTCampaignReply {
     /**
      *
      * @return
-     * The identifier
+     * The name
      */
-    @JsonProperty("identifier")
-    public String getIdentifier() {
-        return identifier;
+    @JsonProperty("name")
+    public String getName() {
+        return name;
     }
 
     /**
      *
-     * @param identifier
-     * The identifier
+     * @param name
+     * The name
      */
-    @JsonProperty("identifier")
-    public void setIdentifier(String identifier) {
-        this.identifier = identifier;
+    @JsonProperty("name")
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public PTCampaignReply withIdentifier(String identifier) {
-        this.identifier = identifier;
+    public SBSmsList withName(String name) {
+        this.name = name;
         return this;
     }
 
     /**
      *
      * @return
-     * The message
+     * The fields
      */
-    @JsonProperty("message")
-    public String getMessage() {
-        return message;
+    @JsonProperty("fields")
+    public List<SBSmsField> getSBSmsFields() {
+        return SBSmsFields;
     }
 
     /**
      *
-     * @param message
-     * The message
+     * @param SBSmsFields
+     * The fields
      */
-    @JsonProperty("message")
-    public void setMessage(String message) {
-        this.message = message;
+    @JsonProperty("fields")
+    public void setSBSmsFields(List<SBSmsField> SBSmsFields) {
+        this.SBSmsFields = SBSmsFields;
     }
 
-    public PTCampaignReply withMessage(String message) {
-        this.message = message;
+    public SBSmsList withFields(List<SBSmsField> SBSmsFields) {
+        this.SBSmsFields = SBSmsFields;
         return this;
     }
 
@@ -128,17 +131,17 @@ public class PTCampaignReply {
         this.additionalProperties.put(name, value);
     }
 
-    public PTCampaignReply withAdditionalProperty(String name, Object value) {
+    public SBSmsList withAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
         return this;
     }
 
     @Override
     public String toString() {
-        return "PTCampaignReply{" +
+        return "PTList{" +
                 "id='" + id + '\'' +
-                ", identifier='" + identifier + '\'' +
-                ", message='" + message + '\'' +
+                ", name='" + name + '\'' +
+                ", fields=" + SBSmsFields +
                 ", additionalProperties=" + additionalProperties +
                 '}';
     }

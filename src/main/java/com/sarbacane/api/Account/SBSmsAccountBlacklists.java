@@ -7,17 +7,17 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * Created by guru on 03/03/15.
  */
 @JsonIgnoreProperties({"type"})
-public class PTBlacklist extends AccountManager {
+public class SBSmsAccountBlacklists extends AccountManager {
     private String type;
     private String identifier;
 
 
-    public PTBlacklist(String type, String identifier) {
+    public SBSmsAccountBlacklists(String type, String identifier) {
         this.type = type;
         this.identifier = identifier;
     }
 
-    public PTBlacklist() {
+    public SBSmsAccountBlacklists() {
 
     }
 
