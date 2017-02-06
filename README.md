@@ -16,14 +16,14 @@
 <dependency>
   <groupId>com.sarbacane</groupId>
   <artifactId>sarbacane-sdk</artifactId>
-  <version>1.0.2</version>
+  <version>1.0.3</version>
 </dependency>
 ```
 
 
 #### JAR
 
-[Download](https://oss.sonatype.org/service/local/repositories/releases/content/com/sarbacane/sarbacane-sdk/1.0.2/sarbacane-sdk-1.0.2.jar)
+[Download](https://oss.sonatype.org/service/local/repositories/releases/content/com/sarbacane/sarbacane-sdk/1.0.2/sarbacane-sdk-1.0.3.jar)
 
 
 #### Sources
@@ -59,7 +59,7 @@ AuthenticationManager.setSmsApikey("da3f2a93592ad9f43fb38977e8f64d76");
 #### Send E-mail
 
 ```
-    SBEmail email = new SBEmail();
+    SBEmailMessage email = new SBEmailMessage();
     email.setMailFrom("sender@domain.com");
     email.setSubject("Message sent by Sarbacane SDK");
     email.setMessage("Here is the content of the message");
@@ -76,7 +76,7 @@ AuthenticationManager.setSmsApikey("da3f2a93592ad9f43fb38977e8f64d76");
 #### Send SMS
 
 ```
-    SBSms msg = new SBSms();
+    SBSmsMessage msg = new SBSmsMessage();
     msg.setType("notification");
     msg.setNumber("+33600000000");
     msg.setMessage("Confirmation code is: 283951");
