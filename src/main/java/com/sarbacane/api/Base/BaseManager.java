@@ -46,7 +46,7 @@ public class BaseManager {
         Message msg = new MimeMessage(session);
         msg.setSentDate(new Date());
         msg.setContent("", TYPE);
-        msg.setHeader("X-SARBACANE-SDK", "1.0");
+        msg.setHeader("X-SARBACANE-SDK", "1.0.4");
         msg.setFrom(new InternetAddress(email.getMailFrom()));
         msg.setSubject(email.getSubject());
 
