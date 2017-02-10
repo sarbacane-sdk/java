@@ -31,7 +31,7 @@ public class MessagesManager extends BaseManager {
     private static Session session;
     private static ObjectMapper mapper = new ObjectMapper();
 
-    public static String sendEmail(SBEmailMessage email) throws MessagingException {
+    public static String sendEmailMessage(SBEmailMessage email) throws MessagingException {
         AuthenticationManager.ensureEmailTokens();
         if ((!isSet(email.getMailFrom())) || (!isSet(email.getRecipients().toString())) || !(isSet(email.getSubject())) || (!isSet(email.getMessage()))) {
             throw new RuntimeException("Error: missing params. sendEmail(mailFrom, rcptTo, subject, message");
@@ -41,7 +41,7 @@ public class MessagesManager extends BaseManager {
     }
 
 
-    public static SBSmsMessageSendingResult sendSms(SBSmsMessage msg) throws IOException {
+    public static SBSmsMessageSendingResult sendSmsMessage(SBSmsMessage msg) throws IOException {
         AuthenticationManager.ensureSmsTokens();
         if (!isSet(msg.getNumber()) || !isSet(msg.getMessage()) || !isSet(msg.getType())) {
             throw new IllegalArgumentException("Error: SMS NOT SENT - message, number and type are required.\n");

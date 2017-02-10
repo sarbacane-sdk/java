@@ -8,6 +8,7 @@ import java.util.List;
  */
 public class SBEmailMessage extends MessagesManager {
     private String mailFrom;
+    private String mailFromName;
     private String subject;
     private String message;
 
@@ -34,6 +35,13 @@ public class SBEmailMessage extends MessagesManager {
         this.mailFrom = mailFrom;
     }
 
+    public String getMailFromName() {
+        return mailFromName;
+    }
+
+    public void setMailFromName(String mailFromName) {
+        this.mailFromName = mailFromName;
+    }
 
     public String getSubject() {
         return subject;

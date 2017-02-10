@@ -61,6 +61,7 @@ AuthenticationManager.setSmsApikey("da3f2a93592ad9f43fb38977e8f64d76");
 ```
     SBEmailMessage email = new SBEmailMessage();
     email.setMailFrom("sender@domain.com");
+    email.setMailFromName("Sender Name");
     email.setSubject("Message sent by Sarbacane SDK");
     email.setMessage("Here is the content of the message");
     email.setRecipients(
@@ -69,7 +70,7 @@ AuthenticationManager.setSmsApikey("da3f2a93592ad9f43fb38977e8f64d76");
                 "address2@domain.com"
             )
     );
-    MessagesManager.sendEmail(email);
+    MessagesManager.sendEmailMessage(email);
 ```
 
 
@@ -83,6 +84,6 @@ AuthenticationManager.setSmsApikey("da3f2a93592ad9f43fb38977e8f64d76");
     msg.setSender("SBSMS");
     msg.setCategory("confirmationCode");
     msg.setCampaignName("Authentication confirmation code");
-    MessagesManager.sendSms(msg);
+    MessagesManager.sendSmsMessage(msg);
 ```
 

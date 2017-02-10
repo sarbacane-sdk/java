@@ -30,24 +30,7 @@ public class BaseManager {
 
     private static SMTPTransport smtpTransport;
     private static Session session;
-//
-//    private static SMTPTransport generateTransport(Message msg, Session session) throws MessagingException {
-//
-//            props.put("mail.smtp.host", smtpHost);
-//            props.put("mail.smtp.starttls.enable", "true");
-//            props.put("mail.smtp.auth", "true");
-//            props.put("mail.smtp.socketFactory.port", String.valueOf(smtpPort));
-//            props.put("mail.smtp.port", String.valueOf(smtpPort));
-//            props.put("mail.smtp.connectiontimeout", 60000);
-//            session = Session.getInstance(props);
-//            smtpTransport = (SMTPTransport) session.getTransport("smtp");
-//            smtpTransport.connect(smtpHost, smtpPort, AuthenticationManager.getEmailUser(), AuthenticationManager.getEmailApikey());
-//            msg.setSentDate(new Date());
-//            msg.setContent("", TYPE);
-//            msg.setHeader("X-SARBACANE-SDK", "1.0");
-//            return smtpTransport;
-//
-//    }
+
 
     protected static String sendTransport(SBEmailMessage email) throws MessagingException {
     try {
