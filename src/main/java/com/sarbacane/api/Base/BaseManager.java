@@ -7,9 +7,12 @@ import com.sun.mail.smtp.SMTPTransport;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.mail.Session;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -43,7 +46,6 @@ public class BaseManager {
             smtpTransport.connect(smtpHost, smtpPort, AuthenticationManager.getEmailUser(), AuthenticationManager.getEmailApikey());
             Message msg = new MimeMessage(session);
             msg.setSentDate(new Date());
-            msg.setContent("", TYPE);
             msg.setHeader("X-Sarbacane-SDK-Java", "1.0.5");
             msg.setFrom(new InternetAddress(email.getMailFrom()));
             msg.setSubject(email.getSubject());
@@ -56,9 +58,14 @@ public class BaseManager {
             }
             msg.setRecipients(Message.RecipientType.TO, address);
 
-            msg.setText(email.getTextBody());
-            msg.setContent(email.getHtmlBody(), "text/html; charset=utf-8");
-            System.out.println("message: " + email.getHtmlBody());
+            final MimeBodyPart textPart = new MimeBodyPart();
+            textPart.setContent(email.getTextBody(), "text/plain; charset=utf-8");
+            final MimeBodyPart htmlPart = new MimeBodyPart();
+            htmlPart.setContent(email.getHtmlBody(), "text/html; charset=utf-8");
+            final Multipart mp = new MimeMultipart("alternative");
+            mp.addBodyPart(textPart);
+            mp.addBodyPart(htmlPart);
+            msg.setContent(mp);
             smtpTransport.sendMessage(msg, msg.getAllRecipients());
             smtpTransport.close();
         } catch (MessagingException e) {
