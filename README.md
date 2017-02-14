@@ -63,8 +63,9 @@ AuthenticationManager.setSmsApikey("da3f2a93592ad9f43fb38977e8f64d76");
     SBEmailMessage email = new SBEmailMessage();
     email.setMailFrom("sender@domain.com");
     email.setMailFromName("Sender Name");
-    email.setSubject("Message sent by Sarbacane SDK");
-    email.setMessage("Here is the content of the message");
+    email.setSubject("Message sent by Sarbacane SDK JAVA");
+    email.setHtmlBody("Here is the <b>HTML</b> content of the message.");
+    email.setTextBody("Here is the content of the message");
     email.setRecipients(
             Arrays.asList(
                 "address1@domain.com",
