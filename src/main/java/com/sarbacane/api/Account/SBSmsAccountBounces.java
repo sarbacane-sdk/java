@@ -32,21 +32,11 @@ public class SBSmsAccountBounces {
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    /**
-     * No args constructor for use in serialization
-     *
-     */
+
     public SBSmsAccountBounces() {
     }
 
-    /**
-     *
-     * @param SBSmsBlacklistHistory
-     * @param id
-     * @param blacklistId
-     * @param identifier
-     * @param deleted
-     */
+
     public SBSmsAccountBounces(String id, Boolean deleted, String identifier, String blacklistId, List<SBSmsBlacklistHistory> SBSmsBlacklistHistory) {
         this.id = id;
         this.deleted = deleted;
@@ -55,21 +45,13 @@ public class SBSmsAccountBounces {
         this.SBSmsBlacklistHistory = SBSmsBlacklistHistory;
     }
 
-    /**
-     *
-     * @return
-     * The id
-     */
+
     @JsonProperty("id")
     public String getId() {
         return id;
     }
 
-    /**
-     *
-     * @param id
-     * The id
-     */
+
     @JsonProperty("id")
     public void setId(String id) {
         this.id = id;
@@ -80,21 +62,12 @@ public class SBSmsAccountBounces {
         return this;
     }
 
-    /**
-     *
-     * @return
-     * The deleted
-     */
     @JsonProperty("deleted")
     public Boolean getDeleted() {
         return deleted;
     }
 
-    /**
-     *
-     * @param deleted
-     * The deleted
-     */
+
     @JsonProperty("deleted")
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
@@ -105,21 +78,13 @@ public class SBSmsAccountBounces {
         return this;
     }
 
-    /**
-     *
-     * @return
-     * The identifier
-     */
+
     @JsonProperty("identifier")
     public String getIdentifier() {
         return identifier;
     }
 
-    /**
-     *
-     * @param identifier
-     * The identifier
-     */
+
     @JsonProperty("identifier")
     public void setIdentifier(String identifier) {
         this.identifier = identifier;
@@ -130,21 +95,12 @@ public class SBSmsAccountBounces {
         return this;
     }
 
-    /**
-     *
-     * @return
-     * The blacklistId
-     */
     @JsonProperty("blacklistId")
     public String getBlacklistId() {
         return blacklistId;
     }
 
-    /**
-     *
-     * @param blacklistId
-     * The blacklistId
-     */
+
     @JsonProperty("blacklistId")
     public void setBlacklistId(String blacklistId) {
         this.blacklistId = blacklistId;
@@ -155,21 +111,13 @@ public class SBSmsAccountBounces {
         return this;
     }
 
-    /**
-     *
-     * @return
-     * The history
-     */
+
     @JsonProperty("history")
     public List<SBSmsBlacklistHistory> getSBSmsBlacklistHistory() {
         return SBSmsBlacklistHistory;
     }
 
-    /**
-     *
-     * @param SBSmsBlacklistHistory
-     * The history
-     */
+
     @JsonProperty("history")
     public void setSBSmsBlacklistHistory(List<SBSmsBlacklistHistory> SBSmsBlacklistHistory) {
         this.SBSmsBlacklistHistory = SBSmsBlacklistHistory;

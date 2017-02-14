@@ -24,40 +24,24 @@ public class SBSmsCampaignReply {
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    /**
-     * No args constructor for use in serialization
-     *
-     */
+
     public SBSmsCampaignReply() {
     }
 
-    /**
-     *
-     * @param message
-     * @param id
-     * @param identifier
-     */
+
     public SBSmsCampaignReply(String id, String identifier, String message) {
         this.id = id;
         this.identifier = identifier;
         this.message = message;
     }
 
-    /**
-     *
-     * @return
-     * The id
-     */
+
     @JsonProperty("id")
     public String getId() {
         return id;
     }
 
-    /**
-     *
-     * @param id
-     * The id
-     */
+
     @JsonProperty("id")
     public void setId(String id) {
         this.id = id;
@@ -68,21 +52,13 @@ public class SBSmsCampaignReply {
         return this;
     }
 
-    /**
-     *
-     * @return
-     * The identifier
-     */
+
     @JsonProperty("identifier")
     public String getIdentifier() {
         return identifier;
     }
 
-    /**
-     *
-     * @param identifier
-     * The identifier
-     */
+
     @JsonProperty("identifier")
     public void setIdentifier(String identifier) {
         this.identifier = identifier;
@@ -93,21 +69,13 @@ public class SBSmsCampaignReply {
         return this;
     }
 
-    /**
-     *
-     * @return
-     * The message
-     */
+
     @JsonProperty("message")
     public String getMessage() {
         return message;
     }
 
-    /**
-     *
-     * @param message
-     * The message
-     */
+
     @JsonProperty("message")
     public void setMessage(String message) {
         this.message = message;

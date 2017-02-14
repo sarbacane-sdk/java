@@ -10,19 +10,6 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.List;
 
-/**
- * Created by guru on 12/11/14.
- */
-// ACCOUNT
-    // acountStats
-    // accountBouncesGet
-    // accountUnsubscribersGet
-    // accountUnsubscribersCreate
-    // accountBouncesCreate
-    // accountBouncesDeleteByIdentifier
-    // accountBouncesDeleteById
-    // accountUnsubscribersDeleteByIdentifier
-    // accountUnsubscribersDeleteById
 
 public class AccountManager extends BaseManager {
 
@@ -35,12 +22,14 @@ public class AccountManager extends BaseManager {
 
     public static List<SBSmsAccountBounces> accountBouncesGet() throws IOException {
         AuthenticationManager.ensureSmsTokens();
-        return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/bounces/default/contacts"), new TypeReference<List<SBSmsAccountBounces>>() {});
+        return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/bounces/default/contacts"), new TypeReference<List<SBSmsAccountBounces>>() {
+        });
     }
 
     public static List<SBSmsAccountUnsubscribers> accountUnsubscribersGet() throws IOException {
         AuthenticationManager.ensureSmsTokens();
-        return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/unsubscribers/default/contacts"), new TypeReference<List<SBSmsAccountUnsubscribers>>() {});
+        return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/unsubscribers/default/contacts"), new TypeReference<List<SBSmsAccountUnsubscribers>>() {
+        });
     }
 
     public static SBSmsAccountBounces accountBouncesCreate(String identifier) throws IOException {

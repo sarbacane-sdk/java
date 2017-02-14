@@ -1,9 +1,5 @@
 package com.sarbacane.api.Campaigns;
 
-/**
- * Created by guru on 08/04/15.
- */
-
 
 public class SBSmsCampaignStats {
     private String id;
@@ -25,17 +21,29 @@ public class SBSmsCampaignStats {
     private Integer timespent;
     private Integer replies;
 
-    public String getId() { return id;}
+    public String getId() {
+        return id;
+    }
 
-    public void setId(String id) { this.id = id; }
+    public void setId(String id) {
+        this.id = id;
+    }
 
-    public String getName() { return name;}
+    public String getName() {
+        return name;
+    }
 
-    public void setName(String name) { this.name = name;}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public String getState() { return state;}
+    public String getState() {
+        return state;
+    }
 
-    public void setState(String state) { this.state = state;}
+    public void setState(String state) {
+        this.state = state;
+    }
 
     public Integer getSent() {
         return sent;

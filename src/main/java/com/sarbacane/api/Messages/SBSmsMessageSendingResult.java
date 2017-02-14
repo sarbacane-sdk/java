@@ -24,40 +24,24 @@ public class SBSmsMessageSendingResult {
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    /**
-     * No args constructor for use in serialization
-     *
-     */
+
     public SBSmsMessageSendingResult() {
     }
 
-    /**
-     *
-     * @param id
-     * @param snapshotId
-     * @param creditsUsed
-     */
+
     public SBSmsMessageSendingResult(Long snapshotId, String id, String creditsUsed) {
         this.snapshotId = snapshotId;
         this.id = id;
         this.creditsUsed = creditsUsed;
     }
 
-    /**
-     *
-     * @return
-     * The snapshotId
-     */
+
     @JsonProperty("snapshotId")
     public Long getsnapshotId() {
         return snapshotId;
     }
 
-    /**
-     *
-     * @param snapshotId
-     * The snapshotId
-     */
+
     @JsonProperty("snapshotId")
     public void setsnapshotId(Long snapshotId) {
         this.snapshotId = snapshotId;
@@ -68,21 +52,13 @@ public class SBSmsMessageSendingResult {
         return this;
     }
 
-    /**
-     *
-     * @return
-     * The id
-     */
+
     @JsonProperty("id")
     public String getId() {
         return id;
     }
 
-    /**
-     *
-     * @param id
-     * The id
-     */
+
     @JsonProperty("id")
     public void setId(String id) {
         this.id = id;
@@ -93,21 +69,13 @@ public class SBSmsMessageSendingResult {
         return this;
     }
 
-    /**
-     *
-     * @return
-     * The creditsUsed
-     */
+
     @JsonProperty("creditsUsed")
     public String getCreditsUsed() {
         return creditsUsed;
     }
 
-    /**
-     *
-     * @param creditsUsed
-     * The creditsUsed
-     */
+
     @JsonProperty("creditsUsed")
     public void setCreditsUsed(String creditsUsed) {
         this.creditsUsed = creditsUsed;

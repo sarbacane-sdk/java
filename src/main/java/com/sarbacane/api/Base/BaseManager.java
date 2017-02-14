@@ -18,9 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 
-/**
- * Created by guru on 07/11/14.
- */
+
 public class BaseManager {
     private static final String TYPE = "text/html; charset=utf-8";
     protected static String baseURL = "https://api.primotexto.com/v2";
@@ -33,40 +31,41 @@ public class BaseManager {
 
 
     protected static String sendTransport(SBEmailMessage email) throws MessagingException {
-    try {
-        props.put("mail.smtp.host", smtpHost);
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.socketFactory.port", String.valueOf(smtpPort));
-        props.put("mail.smtp.port", String.valueOf(smtpPort));
-        props.put("mail.smtp.connectiontimeout", 60000);
-        session = Session.getInstance(props);
-        smtpTransport = (SMTPTransport) session.getTransport("smtp");
-        smtpTransport.connect(smtpHost, smtpPort, AuthenticationManager.getEmailUser(), AuthenticationManager.getEmailApikey());
-        Message msg = new MimeMessage(session);
-        msg.setSentDate(new Date());
-        msg.setContent("", TYPE);
-        msg.setHeader("X-SARBACANE-SDK", "1.0.4");
-        msg.setFrom(new InternetAddress(email.getMailFrom()));
-        msg.setSubject(email.getSubject());
+        try {
+            props.put("mail.smtp.host", smtpHost);
+            props.put("mail.smtp.starttls.enable", "true");
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.socketFactory.port", String.valueOf(smtpPort));
+            props.put("mail.smtp.port", String.valueOf(smtpPort));
+            props.put("mail.smtp.connectiontimeout", 60000);
+            session = Session.getInstance(props);
+            smtpTransport = (SMTPTransport) session.getTransport("smtp");
+            smtpTransport.connect(smtpHost, smtpPort, AuthenticationManager.getEmailUser(), AuthenticationManager.getEmailApikey());
+            Message msg = new MimeMessage(session);
+            msg.setSentDate(new Date());
+            msg.setContent("", TYPE);
+            msg.setHeader("X-Sarbacane-SDK-Java", "1.0.5");
+            msg.setFrom(new InternetAddress(email.getMailFrom()));
+            msg.setSubject(email.getSubject());
 
-        InternetAddress[] address = new InternetAddress[email.getRecipients().size()];
-        int counter = 0;
-        for (String recipient : email.getRecipients()) {
-            address[counter] = new InternetAddress(recipient.trim());
-            counter++;
+            InternetAddress[] address = new InternetAddress[email.getRecipients().size()];
+            int counter = 0;
+            for (String recipient : email.getRecipients()) {
+                address[counter] = new InternetAddress(recipient.trim());
+                counter++;
+            }
+            msg.setRecipients(Message.RecipientType.TO, address);
+
+            msg.setText(email.getTextBody());
+            msg.setContent(email.getHtmlBody(), "text/html; charset=utf-8");
+            System.out.println("message: " + email.getHtmlBody());
+            smtpTransport.sendMessage(msg, msg.getAllRecipients());
+            smtpTransport.close();
+        } catch (MessagingException e) {
+            e.printStackTrace();
         }
-        msg.setRecipients(Message.RecipientType.TO, address);
-
-        msg.setText(email.getMessage());
-        System.out.println("message: " + email.getMessage());
-        smtpTransport.sendMessage(msg, msg.getAllRecipients());
-        smtpTransport.close();
-    } catch (MessagingException e) {
-        e.printStackTrace();
-    }
         return smtpTransport.getLastServerResponse();
-}
+    }
 
     private static HttpURLConnection httpWithTokens(String url, String method) {
         try {
@@ -115,7 +114,7 @@ public class BaseManager {
             StringBuilder result = new StringBuilder();
             while ((line = br.readLine()) != null) {
                 result.append(line);
-                //System.out.println(line);
+
             }
             conn.disconnect();
             throw new RuntimeException("Failed : HTTP error code : "
@@ -131,7 +130,7 @@ public class BaseManager {
             StringBuilder result = new StringBuilder();
             while ((line = br.readLine()) != null) {
                 result.append(line);
-                //System.out.println(line);
+
             }
             conn.disconnect();
             return result.toString();
@@ -154,7 +153,7 @@ public class BaseManager {
             StringBuilder result = new StringBuilder();
             while ((line = br.readLine()) != null) {
                 result.append(line);
-                //System.out.println(line);
+
             }
             conn.disconnect();
             throw new RuntimeException("Failed : HTTP error code : "
@@ -170,7 +169,7 @@ public class BaseManager {
             StringBuilder result = new StringBuilder();
             while ((line = br.readLine()) != null) {
                 result.append(line);
-                //System.out.println(line);
+
             }
             conn.disconnect();
             return result.toString();
@@ -201,16 +200,7 @@ public class BaseManager {
                     + "\nReason:"
                     + result.toString());
         } else {
-//            BufferedReader br = new BufferedReader(new InputStreamReader(
-//                    (conn.getInputStream())));
-//
-//
-//            String line;
-//            StringBuilder result = new StringBuilder();
-//            while ((line = br.readLine()) != null) {
-//                result.append(line);
-//                //System.out.println(line);
-//            }
+
             String header = conn.getHeaderField("Location");
             conn.disconnect();
             return header.toString();
@@ -231,7 +221,7 @@ public class BaseManager {
             StringBuilder result = new StringBuilder();
             while ((line = br.readLine()) != null) {
                 result.append(line);
-                //System.out.println(line);
+
             }
             conn.disconnect();
             throw new RuntimeException("Failed : HTTP error code : "
@@ -247,7 +237,7 @@ public class BaseManager {
             StringBuilder result = new StringBuilder();
             while ((line = br.readLine()) != null) {
                 result.append(line);
-                //System.out.println(line);
+
             }
             conn.disconnect();
             return result.toString();
@@ -273,7 +263,7 @@ public class BaseManager {
             StringBuilder result = new StringBuilder();
             while ((line = br.readLine()) != null) {
                 result.append(line);
-                //System.out.println(line);
+
             }
             conn.disconnect();
             return result.toString();
@@ -306,8 +296,4 @@ public class BaseManager {
         }
     }
 
-//    public static String readFile(String path, Charset encoding)  throws IOException {
-//        byte[] encoded = Files.readAllBytes(Paths.get(path));
-//        return new String(encoded, encoding);
-//    }
 }

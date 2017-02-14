@@ -21,38 +21,23 @@ public class SBSmsBlacklistHistory {
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    /**
-     * No args constructor for use in serialization
-     *
-     */
+
     public SBSmsBlacklistHistory() {
     }
 
-    /**
-     *
-     * @param campaignId
-     * @param date
-     */
+
     public SBSmsBlacklistHistory(Long date, String campaignId) {
         this.date = date;
         this.campaignId = campaignId;
     }
 
-    /**
-     *
-     * @return
-     * The date
-     */
+
     @JsonProperty("date")
     public Long getDate() {
         return date;
     }
 
-    /**
-     *
-     * @param date
-     * The date
-     */
+
     @JsonProperty("date")
     public void setDate(Long date) {
         this.date = date;
@@ -63,21 +48,13 @@ public class SBSmsBlacklistHistory {
         return this;
     }
 
-    /**
-     *
-     * @return
-     * The campaignId
-     */
+
     @JsonProperty("campaignId")
     public String getCampaignId() {
         return campaignId;
     }
 
-    /**
-     *
-     * @param campaignId
-     * The campaignId
-     */
+
     @JsonProperty("campaignId")
     public void setCampaignId(String campaignId) {
         this.campaignId = campaignId;

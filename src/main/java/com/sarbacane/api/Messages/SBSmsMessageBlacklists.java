@@ -5,9 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by guru on 08/04/15.
- */
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 
 public class SBSmsMessageBlacklists {

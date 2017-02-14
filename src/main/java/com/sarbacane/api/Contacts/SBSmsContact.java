@@ -7,15 +7,12 @@ import com.sarbacane.api.Lists.ListsManager;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by guru on 02/04/15.
- */
 
-@JsonIgnoreProperties({"listId","request"})
+@JsonIgnoreProperties({"listId", "request"})
 public class SBSmsContact extends ListsManager {
-    public String id=null;
-    public String listId=null;
-    public String identifier=null;
+    public String id = null;
+    public String listId = null;
+    public String identifier = null;
     public Map<String, String> attributes = new HashMap<String, String>();
 
     public String getId() {

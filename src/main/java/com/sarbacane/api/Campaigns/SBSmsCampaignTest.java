@@ -4,9 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sarbacane.api.Base.BaseManager;
 
 
-/**
- * Created by guru on 06/10/15.
- */
 @JsonIgnoreProperties({"id"})
 public class SBSmsCampaignTest extends BaseManager {
     private String id;

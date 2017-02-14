@@ -13,19 +13,6 @@ import java.net.URLEncoder;
 import java.util.List;
 
 
-/**
- * Created by guru on 12/11/14.
- */
-// MESSAGES
-    // messagesNotificationSend
-    // messagesMarketingSend
-    // messagesGetStatsByCategory
-    // messagesGetRepliesByCategory
-    // messagesGetStatusBySnapshotId
-    // messagesGetStatusByIdentifier
-    // messagesGetBlacklistsByCategory
-
-
 public class MessagesManager extends BaseManager {
 
     private static Session session;
@@ -33,8 +20,8 @@ public class MessagesManager extends BaseManager {
 
     public static String sendEmailMessage(SBEmailMessage email) throws MessagingException {
         AuthenticationManager.ensureEmailTokens();
-        if ((!isSet(email.getMailFrom())) || (!isSet(email.getRecipients().toString())) || !(isSet(email.getSubject())) || (!isSet(email.getMessage()))) {
-            throw new RuntimeException("Error: missing params. sendEmail(mailFrom, rcptTo, subject, message");
+        if ((!isSet(email.getMailFrom())) || (!isSet(email.getMailFromName())) || (!isSet(email.getRecipients().toString())) || !(isSet(email.getSubject())) || (!isSet(email.getHtmlBody())) || (!isSet(email.getTextBody()))) {
+            throw new RuntimeException("Error: mailFrom, mailFromName, recipients, subject, htmlBody and textBody are required.");
         } else {
             return BaseManager.sendTransport(email);
         }
@@ -54,18 +41,6 @@ public class MessagesManager extends BaseManager {
         }
     }
 
-//    public static PTResult sendMarketingSms(SBSms msg) throws IOException {
-//        AuthenticationManager.ensureSmsTokens();
-//        if (!isSet(msg.getNumber()) || !isSet(msg.getMessage())) {
-//            throw new RuntimeException("Error: SMS NOT SENT - message and number are required.\n");
-//        } else if (isSet(msg.getCategory()) && !isSet(msg.getCampaignName())) {
-//            throw new RuntimeException("Error: Please define a campaignName for catagory\n");
-//        } else {
-//            ObjectMapper mapper = new ObjectMapper();
-//            String json = mapper.writeValueAsString(msg);
-//            return mapper.readValue(BaseManager.httpPost(BaseManager.baseURL + "/marketing/messages/send", json), PTResult.class);
-//        }
-//    }
 
     public static SBSmsSnapshot smsStatusBySnapshotId(String snapshotId) throws IOException {
         AuthenticationManager.ensureSmsTokens();
@@ -89,7 +64,8 @@ public class MessagesManager extends BaseManager {
         AuthenticationManager.ensureSmsTokens();
         if (category != null) {
             if (category.equals("")) {
-                return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/messages/replies" + URLEncoder.encode(category, "UTF-8") ), new TypeReference<List<SBSmsMessageReplies>>() {});
+                return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/messages/replies" + URLEncoder.encode(category, "UTF-8")), new TypeReference<List<SBSmsMessageReplies>>() {
+                });
             } else {
                 return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/messages/replies?category=" + URLEncoder.encode(category, "UTF-8")), new TypeReference<List<SBSmsMessageReplies>>() {
                 });

@@ -57,30 +57,11 @@ public class SBSmsCampaign {
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    /**
-     * No args constructor for use in serialization
-     *
-     */
+
     public SBSmsCampaign() {
     }
 
-    /**
-     *
-     * @param flash
-     * @param keepList
-     * @param state
-     * @param cleanUnsubscribers
-     * @param cleanBounces
-     * @param type
-     * @param date
-     * @param totalCredits
-     * @param id
-     * @param campaignId
-     * @param message
-     * @param SBSmsCampaignSendList
-     * @param name
-     * @param sourceAddress
-     */
+
     public SBSmsCampaign(String id, String campaignId, String message, SBSmsCampaignSendList SBSmsCampaignSendList, String state, String name, String type, String sourceAddress, Long date, Boolean flash, Boolean cleanBounces, Boolean cleanUnsubscribers, Boolean keepList, Double totalCredits) {
         this.id = id;
         this.campaignId = campaignId;
@@ -98,21 +79,13 @@ public class SBSmsCampaign {
         this.totalCredits = totalCredits;
     }
 
-    /**
-     *
-     * @return
-     * The id
-     */
+
     @JsonProperty("id")
     public String getId() {
         return id;
     }
 
-    /**
-     *
-     * @param id
-     * The id
-     */
+
     @JsonProperty("id")
     public void setId(String id) {
         this.id = id;
@@ -124,21 +97,12 @@ public class SBSmsCampaign {
     }
 
 
-    /**
-     *
-     * @return
-     * The campaignId
-     */
     @JsonProperty("campaignId")
     public String getCampaignId() {
         return campaignId;
     }
 
-    /**
-     *
-     * @param campaignId
-     * The campaignId
-     */
+
     @JsonProperty("campaignId")
     public void setCampaignId(String campaignId) {
         this.campaignId = campaignId;
@@ -150,21 +114,12 @@ public class SBSmsCampaign {
     }
 
 
-    /**
-     *
-     * @return
-     * The message
-     */
     @JsonProperty("message")
     public String getMessage() {
         return message;
     }
 
-    /**
-     *
-     * @param message
-     * The message
-     */
+
     @JsonProperty("message")
     public void setMessage(String message) {
         this.message = message;
@@ -175,21 +130,13 @@ public class SBSmsCampaign {
         return this;
     }
 
-    /**
-     *
-     * @return
-     * The sendList
-     */
+
     @JsonProperty("sendList")
     public SBSmsCampaignSendList getSBSmsCampaignSendList() {
         return SBSmsCampaignSendList;
     }
 
-    /**
-     *
-     * @param SBSmsCampaignSendList
-     * The sendList
-     */
+
     @JsonProperty("sendList")
     public void setSBSmsCampaignSendList(SBSmsCampaignSendList SBSmsCampaignSendList) {
         this.SBSmsCampaignSendList = SBSmsCampaignSendList;
@@ -200,21 +147,13 @@ public class SBSmsCampaign {
         return this;
     }
 
-    /**
-     *
-     * @return
-     * The state
-     */
+
     @JsonProperty("state")
     public String getState() {
         return state;
     }
 
-    /**
-     *
-     * @param state
-     * The state
-     */
+
     @JsonProperty("state")
     public void setState(String state) {
         this.state = state;
@@ -225,21 +164,13 @@ public class SBSmsCampaign {
         return this;
     }
 
-    /**
-     *
-     * @return
-     * The name
-     */
+
     @JsonProperty("name")
     public String getName() {
         return name;
     }
 
-    /**
-     *
-     * @param name
-     * The name
-     */
+
     @JsonProperty("name")
     public void setName(String name) {
         this.name = name;
@@ -250,21 +181,13 @@ public class SBSmsCampaign {
         return this;
     }
 
-    /**
-     *
-     * @return
-     * The type
-     */
+
     @JsonProperty("type")
     public String getType() {
         return type;
     }
 
-    /**
-     *
-     * @param type
-     * The type
-     */
+
     @JsonProperty("type")
     public void setType(String type) {
         this.type = type;
@@ -275,21 +198,13 @@ public class SBSmsCampaign {
         return this;
     }
 
-    /**
-     *
-     * @return
-     * The sourceAddress
-     */
+
     @JsonProperty("sourceAddress")
     public String getSourceAddress() {
         return sourceAddress;
     }
 
-    /**
-     *
-     * @param sourceAddress
-     * The sourceAddress
-     */
+
     @JsonProperty("sourceAddress")
     public void setSourceAddress(String sourceAddress) {
         this.sourceAddress = sourceAddress;
@@ -300,21 +215,13 @@ public class SBSmsCampaign {
         return this;
     }
 
-    /**
-     *
-     * @return
-     * The date
-     */
+
     @JsonProperty("date")
     public Long getDate() {
         return date;
     }
 
-    /**
-     *
-     * @param date
-     * The date
-     */
+
     @JsonProperty("date")
     public void setDate(Long date) {
         this.date = date;
@@ -325,21 +232,13 @@ public class SBSmsCampaign {
         return this;
     }
 
-    /**
-     *
-     * @return
-     * The flash
-     */
+
     @JsonProperty("flash")
     public Boolean getFlash() {
         return flash;
     }
 
-    /**
-     *
-     * @param flash
-     * The flash
-     */
+
     @JsonProperty("flash")
     public void setFlash(Boolean flash) {
         this.flash = flash;
@@ -350,21 +249,13 @@ public class SBSmsCampaign {
         return this;
     }
 
-    /**
-     *
-     * @return
-     * The cleanBounces
-     */
+
     @JsonProperty("cleanBounces")
     public Boolean getCleanBounces() {
         return cleanBounces;
     }
 
-    /**
-     *
-     * @param cleanBounces
-     * The cleanBounces
-     */
+
     @JsonProperty("cleanBounces")
     public void setCleanBounces(Boolean cleanBounces) {
         this.cleanBounces = cleanBounces;
@@ -375,21 +266,13 @@ public class SBSmsCampaign {
         return this;
     }
 
-    /**
-     *
-     * @return
-     * The cleanUnsubscribers
-     */
+
     @JsonProperty("cleanUnsubscribers")
     public Boolean getCleanUnsubscribers() {
         return cleanUnsubscribers;
     }
 
-    /**
-     *
-     * @param cleanUnsubscribers
-     * The cleanUnsubscribers
-     */
+
     @JsonProperty("cleanUnsubscribers")
     public void setCleanUnsubscribers(Boolean cleanUnsubscribers) {
         this.cleanUnsubscribers = cleanUnsubscribers;
@@ -400,21 +283,13 @@ public class SBSmsCampaign {
         return this;
     }
 
-    /**
-     *
-     * @return
-     * The keepList
-     */
+
     @JsonProperty("keepList")
     public Boolean getKeepList() {
         return keepList;
     }
 
-    /**
-     *
-     * @param keepList
-     * The keepList
-     */
+
     @JsonProperty("keepList")
     public void setKeepList(Boolean keepList) {
         this.keepList = keepList;
@@ -425,21 +300,13 @@ public class SBSmsCampaign {
         return this;
     }
 
-    /**
-     *
-     * @return
-     * The totalCredits
-     */
+
     @JsonProperty("totalCredits")
     public Double getTotalCredits() {
         return totalCredits;
     }
 
-    /**
-     *
-     * @param totalCredits
-     * The totalCredits
-     */
+
     @JsonProperty("totalCredits")
     public void setTotalCredits(Double totalCredits) {
         this.totalCredits = totalCredits;

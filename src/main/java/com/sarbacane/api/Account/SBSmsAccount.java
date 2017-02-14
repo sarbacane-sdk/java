@@ -1,8 +1,5 @@
 package com.sarbacane.api.Account;
 
-/**
- * Created by guru on 21/04/15.
- */
 public class SBSmsAccount extends AccountManager {
     private Long credits;
     private Long delivered;
@@ -19,7 +16,6 @@ public class SBSmsAccount extends AccountManager {
     public void setBounces(Long bounces) {
         this.bounces = bounces;
     }
-
 
 
     public Long getCredits() {

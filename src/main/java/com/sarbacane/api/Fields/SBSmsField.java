@@ -30,21 +30,11 @@ public class SBSmsField {
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    /**
-     * No args constructor for use in serialization
-     *
-     */
+
     public SBSmsField() {
     }
 
-    /**
-     *
-     * @param id
-     * @param listId
-     * @param name
-     * @param format
-     * @param type
-     */
+
     public SBSmsField(String id, String name, String type, String listId, String format) {
         this.id = id;
         this.name = name;
@@ -53,21 +43,13 @@ public class SBSmsField {
         this.format = format;
     }
 
-    /**
-     *
-     * @return
-     * The id
-     */
+
     @JsonProperty("id")
     public String getId() {
         return id;
     }
 
-    /**
-     *
-     * @param id
-     * The id
-     */
+
     @JsonProperty("id")
     public void setId(String id) {
         this.id = id;
@@ -78,21 +60,13 @@ public class SBSmsField {
         return this;
     }
 
-    /**
-     *
-     * @return
-     * The name
-     */
+
     @JsonProperty("name")
     public String getName() {
         return name;
     }
 
-    /**
-     *
-     * @param name
-     * The name
-     */
+
     @JsonProperty("name")
     public void setName(String name) {
         this.name = name;
@@ -103,21 +77,13 @@ public class SBSmsField {
         return this;
     }
 
-    /**
-     *
-     * @return
-     * The type
-     */
+
     @JsonProperty("type")
     public String getType() {
         return type;
     }
 
-    /**
-     *
-     * @param type
-     * The type
-     */
+
     @JsonProperty("type")
     public void setType(String type) {
         this.type = type;
@@ -128,21 +94,13 @@ public class SBSmsField {
         return this;
     }
 
-    /**
-     *
-     * @return
-     * The listId
-     */
+
     @JsonProperty("listId")
     public String getListId() {
         return listId;
     }
 
-    /**
-     *
-     * @param listId
-     * The listId
-     */
+
     @JsonProperty("listId")
     public void setListId(String listId) {
         this.listId = listId;
@@ -153,21 +111,13 @@ public class SBSmsField {
         return this;
     }
 
-    /**
-     *
-     * @return
-     * The format
-     */
+
     @JsonProperty("format")
     public String getFormat() {
         return format;
     }
 
-    /**
-     *
-     * @param format
-     * The format
-     */
+
     @JsonProperty("format")
     public void setFormat(String format) {
         this.format = format;

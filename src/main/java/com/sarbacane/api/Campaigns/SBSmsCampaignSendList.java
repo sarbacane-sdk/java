@@ -19,36 +19,22 @@ public class SBSmsCampaignSendList {
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    /**
-     * No args constructor for use in serialization
-     *
-     */
+
     public SBSmsCampaignSendList() {
     }
 
-    /**
-     *
-     * @param id
-     */
+
     public SBSmsCampaignSendList(String id) {
         this.id = id;
     }
 
-    /**
-     *
-     * @return
-     * The id
-     */
+
     @JsonProperty("id")
     public String getId() {
         return id;
     }
 
-    /**
-     *
-     * @param id
-     * The id
-     */
+
     @JsonProperty("id")
     public void setId(String id) {
         this.id = id;

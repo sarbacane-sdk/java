@@ -8,15 +8,7 @@ import com.sarbacane.api.Base.BaseManager;
 import java.io.IOException;
 import java.util.List;
 
-/**
- * Created by guru on 06/10/15.
- */
-// CAMPAIGNS
-    // campaignsCreate
-    // campaignsTest
-    // campaignsSend
-    // campaignsStats
-    // campaignsBlacklists
+
 public class CampaignsManager extends BaseManager {
 
     private static ObjectMapper mapper = new ObjectMapper();
@@ -60,7 +52,8 @@ public class CampaignsManager extends BaseManager {
 
     public static List<SBSmsCampaign> campaignsGet() throws IOException {
         AuthenticationManager.ensureSmsTokens();
-        return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/campaigns/"), new TypeReference<List<SBSmsCampaign>>() {});
+        return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/campaigns/"), new TypeReference<List<SBSmsCampaign>>() {
+        });
     }
 
     public static SBSmsCampaignSendingResult campaignsTest(String campaignId, String identifier) throws IOException {
@@ -69,7 +62,7 @@ public class CampaignsManager extends BaseManager {
             throw new RuntimeException("Error: campaignId and identifierare required.\n");
         } else {
             ObjectMapper mapper = new ObjectMapper();
-            String json = "{\"identifier\": \"" + identifier + "\"}" ;
+            String json = "{\"identifier\": \"" + identifier + "\"}";
             return mapper.readValue(BaseManager.httpPost(BaseManager.baseURL + "/campaigns/" + campaignId + "/test", json), SBSmsCampaignSendingResult.class);
         }
     }
@@ -97,7 +90,8 @@ public class CampaignsManager extends BaseManager {
         if (!isSet(campaignId)) {
             throw new RuntimeException("Error: You need to specify the campaignId.\n");
         } else {
-            return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/campaigns/" + campaignId + "/replies"), new TypeReference<List<SBSmsCampaignReply>>() {});
+            return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/campaigns/" + campaignId + "/replies"), new TypeReference<List<SBSmsCampaignReply>>() {
+            });
         }
     }
 

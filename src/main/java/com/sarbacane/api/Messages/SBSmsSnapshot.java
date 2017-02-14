@@ -2,9 +2,7 @@ package com.sarbacane.api.Messages;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-/**
- * Created by guru on 08/04/15.
- */
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SBSmsSnapshot {
     private Long delivered;
@@ -16,7 +14,8 @@ public class SBSmsSnapshot {
     private Long reply;
     private String test;
 
-    public SBSmsSnapshot(){}
+    public SBSmsSnapshot() {
+    }
 
     public Long getDelivered() {
         return delivered;

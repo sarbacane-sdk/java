@@ -3,14 +3,13 @@ package com.sarbacane.api.Messages;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by guru on 30/01/17.
- */
+
 public class SBEmailMessage extends MessagesManager {
     private String mailFrom;
     private String mailFromName;
     private String subject;
-    private String message;
+    private String htmlBody;
+    private String textBody;
 
 
     private List<String> recipients = new ArrayList<String>();
@@ -51,13 +50,19 @@ public class SBEmailMessage extends MessagesManager {
         this.subject = subject;
     }
 
-    public String getMessage() {
-        return message;
+    public String getHtmlBody() {
+        return htmlBody;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setHtmlBody(String htmlBody) {
+        this.htmlBody = htmlBody;
     }
 
+    public String getTextBody() {
+        return textBody;
+    }
 
+    public void setTextBody(String textBody) {
+        this.textBody = textBody;
+    }
 }

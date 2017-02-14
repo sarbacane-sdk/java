@@ -5,9 +5,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * Created by guru on 13/11/14.
- */
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 
 public class SBSmsMessage extends MessagesManager {
@@ -21,9 +19,11 @@ public class SBSmsMessage extends MessagesManager {
     private String campaignName;
     private String category;
 
-    public SBSmsMessage() {}
+    public SBSmsMessage() {
+    }
+
     @JsonCreator
-    public SBSmsMessage(@JsonProperty("creditsUsed") long creditsUsed, @JsonProperty("snapshotId") long snapshotId){
+    public SBSmsMessage(@JsonProperty("creditsUsed") long creditsUsed, @JsonProperty("snapshotId") long snapshotId) {
         this.creditsUsed = creditsUsed;
         this.snapshotId = snapshotId;
     }

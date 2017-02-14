@@ -3,13 +3,8 @@ package com.sarbacane.api.Authentication;
 
 import static com.sarbacane.api.Base.BaseManager.isSet;
 
-/**
- * Created by guru on 07/11/14.
- */
-
 
 public class AuthenticationManager {
-
 
 
     private static String smsApikey;
@@ -19,7 +14,7 @@ public class AuthenticationManager {
     }
 
     public static void setSmsApikey(String smsApikey) {
-        if (isSet(smsApikey) && (smsApikey.length()==32)) {
+        if (isSet(smsApikey) && (smsApikey.length() == 32)) {
             AuthenticationManager.smsApikey = smsApikey;
         } else {
             throw new RuntimeException("Incorrect SMS tokens !");
@@ -30,9 +25,6 @@ public class AuthenticationManager {
         return isSet(smsApikey);
     }
 
-    //private static boolean userIsLoggedIn() {
-    //    return (isSet(getSmsApikey()));
-    //}
 
     public static void ensureSmsTokens() {
         if (!AuthenticationManager.smsCredentialsAreSet()) {
@@ -46,12 +38,13 @@ public class AuthenticationManager {
     public static String getEmailUser() {
         return emailUser;
     }
+
     public static String getEmailApikey() {
         return emailApikey;
     }
 
     public static void setEmailTokens(String emailUser, String emailApikey) {
-        if (isSet(emailUser) && isSet(emailApikey) && (emailApikey.length()==32)) {
+        if (isSet(emailUser) && isSet(emailApikey) && (emailApikey.length() == 32)) {
             AuthenticationManager.emailApikey = emailApikey;
             AuthenticationManager.emailUser = emailUser;
         } else {
@@ -74,59 +67,56 @@ public class AuthenticationManager {
     }
 
 
-        private static String proxyHost = null;
-        private static Integer proxyPort = null;
-        private static String proxyUsername = null;
-        private static String proxyPassword = null;
+    private static String proxyHost = null;
+    private static Integer proxyPort = null;
+    private static String proxyUsername = null;
+    private static String proxyPassword = null;
 
 
-        public static String getProxyHost() {
-            return proxyHost;
-        }
+    public static String getProxyHost() {
+        return proxyHost;
+    }
 
-        public static void setProxyHost(String host) {
-            proxyHost = host;
-        }
+    public static void setProxyHost(String host) {
+        proxyHost = host;
+    }
 
-        public static Integer getProxyPort() {
-            return proxyPort;
-        }
+    public static Integer getProxyPort() {
+        return proxyPort;
+    }
 
-        public static void setProxyPort(Integer port) {
-            proxyPort = port;
-        }
+    public static void setProxyPort(Integer port) {
+        proxyPort = port;
+    }
 
-        public static String getProxyUsername() {
-            return proxyUsername;
-        }
+    public static String getProxyUsername() {
+        return proxyUsername;
+    }
 
-        public static void setProxyUsername(String username) {
-            proxyUsername = username;
-        }
+    public static void setProxyUsername(String username) {
+        proxyUsername = username;
+    }
 
-        public static String getProxyPassword() {
-            return proxyPassword;
-        }
+    public static String getProxyPassword() {
+        return proxyPassword;
+    }
 
-        public static void setProxyPassword(String password) {
-            proxyPassword = password;
-        }
+    public static void setProxyPassword(String password) {
+        proxyPassword = password;
+    }
 
 
-
-    public static void setProxyConfiguration (String host, Integer port, String username, String password) {
+    public static void setProxyConfiguration(String host, Integer port, String username, String password) {
         setProxyHost(host);
         setProxyPort(port);
         setProxyUsername(username);
         setProxyPassword(password);
     }
 
-    public static void setProxyConfiguration (String host, Integer port) {
+    public static void setProxyConfiguration(String host, Integer port) {
         setProxyHost(host);
         setProxyPort(port);
     }
-
-
 
 
 }

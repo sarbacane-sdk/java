@@ -27,40 +27,23 @@ public class SBSmsList {
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    /**
-     * No args constructor for use in serialization
-     *
-     */
     public SBSmsList() {
     }
 
-    /**
-     *
-     * @param id
-     * @param name
-     * @param SBSmsFields
-     */
+
     public SBSmsList(String id, String name, List<SBSmsField> SBSmsFields) {
         this.id = id;
         this.name = name;
         this.SBSmsFields = SBSmsFields;
     }
 
-    /**
-     *
-     * @return
-     * The id
-     */
+
     @JsonProperty("id")
     public String getId() {
         return id;
     }
 
-    /**
-     *
-     * @param id
-     * The id
-     */
+
     @JsonProperty("id")
     public void setId(String id) {
         this.id = id;
@@ -71,21 +54,13 @@ public class SBSmsList {
         return this;
     }
 
-    /**
-     *
-     * @return
-     * The name
-     */
+
     @JsonProperty("name")
     public String getName() {
         return name;
     }
 
-    /**
-     *
-     * @param name
-     * The name
-     */
+
     @JsonProperty("name")
     public void setName(String name) {
         this.name = name;
@@ -96,21 +71,13 @@ public class SBSmsList {
         return this;
     }
 
-    /**
-     *
-     * @return
-     * The fields
-     */
+
     @JsonProperty("fields")
     public List<SBSmsField> getSBSmsFields() {
         return SBSmsFields;
     }
 
-    /**
-     *
-     * @param SBSmsFields
-     * The fields
-     */
+
     @JsonProperty("fields")
     public void setSBSmsFields(List<SBSmsField> SBSmsFields) {
         this.SBSmsFields = SBSmsFields;

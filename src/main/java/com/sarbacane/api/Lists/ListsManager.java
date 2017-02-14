@@ -9,15 +9,6 @@ import java.io.IOException;
 import java.util.List;
 
 
-/**
- * Created by guru on 02/04/15.
- */
-// LISTS
-    // listsCreate
-    // listsDelete
-    // listsGet
-    // listsGet
-
 public class ListsManager extends BaseManager {
 
     private static ObjectMapper mapper = new ObjectMapper();
@@ -28,17 +19,18 @@ public class ListsManager extends BaseManager {
             throw new RuntimeException("Error: name is required.\n");
         } else {
             ObjectMapper mapper = new ObjectMapper();
-            String json = "{\"name\": \"" + name + "\"}" ;//mapper.writeValueAsString(obj)
+            String json = "{\"name\": \"" + name + "\"}";//mapper.writeValueAsString(obj)
             return mapper.readValue(BaseManager.httpPost(BaseManager.baseURL + "/lists", json), SBSmsList.class);
         }
     }
 
-    public static List<SBSmsList> listsGet () throws IOException {
+    public static List<SBSmsList> listsGet() throws IOException {
         AuthenticationManager.ensureSmsTokens();
-        return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/lists"), new TypeReference<List<SBSmsList>>(){});
+        return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/lists"), new TypeReference<List<SBSmsList>>() {
+        });
     }
 
-    public static SBSmsList listsGet (String listId) throws IOException {
+    public static SBSmsList listsGet(String listId) throws IOException {
         AuthenticationManager.ensureSmsTokens();
         if (!isSet(listId)) {
             throw new RuntimeException("Error: listId is required.\n");
@@ -49,7 +41,7 @@ public class ListsManager extends BaseManager {
 
     public static String bulkImport(String listId, String filePath) throws IOException {
         AuthenticationManager.ensureSmsTokens();
-        if ( (!isSet(listId)) || (!isSet(filePath)) ) {
+        if ((!isSet(listId)) || (!isSet(filePath))) {
             throw new RuntimeException("Error: listId AND filePath are required.\n");
         } else {
             String json = BaseManager.readFile(filePath);
@@ -57,7 +49,7 @@ public class ListsManager extends BaseManager {
         }
     }
 
-    public static String operationStatus (String operationUrl) throws IOException {
+    public static String operationStatus(String operationUrl) throws IOException {
         AuthenticationManager.ensureSmsTokens();
         if (!isSet(operationUrl)) {
             throw new RuntimeException("Error: operationId is required.\n");
@@ -67,7 +59,7 @@ public class ListsManager extends BaseManager {
 
     }
 
-    public static String listsDelete (String listId) throws IOException {
+    public static String listsDelete(String listId) throws IOException {
         AuthenticationManager.ensureSmsTokens();
         if (!isSet(listId)) {
             throw new RuntimeException("Error: listId is required.\n");

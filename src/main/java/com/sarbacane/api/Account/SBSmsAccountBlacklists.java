@@ -3,9 +3,7 @@ package com.sarbacane.api.Account;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-/**
- * Created by guru on 03/03/15.
- */
+
 @JsonIgnoreProperties({"type"})
 public class SBSmsAccountBlacklists extends AccountManager {
     private String type;

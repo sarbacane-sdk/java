@@ -1,11 +1,8 @@
 package com.sarbacane.api.Lists;
 
-/**
- * Created by guru on 02/04/15.
- */
 public class SBSmsLists extends ListsManager {
-    public String id=null;
-    public String name=null;
+    public String id = null;
+    public String name = null;
 
     @Override
     public String toString() {
@@ -14,9 +11,6 @@ public class SBSmsLists extends ListsManager {
                 ", name='" + name + '\'' +
                 '}';
     }
-
-
-
 
 
     public String getId() {
@@ -34,8 +28,6 @@ public class SBSmsLists extends ListsManager {
     public void setName(String name) {
         this.name = name;
     }
-
-
 
 
 }

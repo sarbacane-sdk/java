@@ -24,40 +24,24 @@ public class SBSmsCampaignSendingResult {
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    /**
-     * No args constructor for use in serialization
-     *
-     */
+
     public SBSmsCampaignSendingResult() {
     }
 
-    /**
-     *
-     * @param id
-     * @param campaignId
-     * @param creditsUsed
-     */
+
     public SBSmsCampaignSendingResult(String campaignId, String id, String creditsUsed) {
         this.campaignId = campaignId;
         this.id = id;
         this.creditsUsed = creditsUsed;
     }
 
-    /**
-     *
-     * @return
-     * The campaignId
-     */
+
     @JsonProperty("campaignId")
     public String getCampaignId() {
         return campaignId;
     }
 
-    /**
-     *
-     * @param campaignId
-     * The campaignId
-     */
+
     @JsonProperty("campaignId")
     public void setCampaignId(String campaignId) {
         this.campaignId = campaignId;
@@ -68,21 +52,13 @@ public class SBSmsCampaignSendingResult {
         return this;
     }
 
-    /**
-     *
-     * @return
-     * The id
-     */
+
     @JsonProperty("id")
     public String getId() {
         return id;
     }
 
-    /**
-     *
-     * @param id
-     * The id
-     */
+
     @JsonProperty("id")
     public void setId(String id) {
         this.id = id;
@@ -93,21 +69,13 @@ public class SBSmsCampaignSendingResult {
         return this;
     }
 
-    /**
-     *
-     * @return
-     * The creditsUsed
-     */
+
     @JsonProperty("creditsUsed")
     public String getCreditsUsed() {
         return creditsUsed;
     }
 
-    /**
-     *
-     * @param creditsUsed
-     * The creditsUsed
-     */
+
     @JsonProperty("creditsUsed")
     public void setCreditsUsed(String creditsUsed) {
         this.creditsUsed = creditsUsed;

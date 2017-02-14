@@ -3,10 +3,6 @@ package com.sarbacane.api.Campaigns;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by guru on 08/04/15.
- */
-
 public class SBSmsCampaignBlacklists {
 
     private Bounces bounces;
