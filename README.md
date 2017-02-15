@@ -1,5 +1,5 @@
 ![alt tag](https://cloud.githubusercontent.com/assets/18444530/22825087/81a050e8-ef8b-11e6-8b33-2508b9be27a8.png)
-### Sarbacane SDK JAVA - Send e-mail and text messages (sms)
+### Sarbacane SDK JAVA - Send e-mail and text messages (sms) ${project.version}
 
 
 * Load artefact from pom.xml
