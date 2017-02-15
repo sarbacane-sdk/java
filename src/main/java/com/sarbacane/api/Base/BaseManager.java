@@ -48,7 +48,7 @@ public class BaseManager {
             smtpTransport.connect(smtpHost, smtpPort, AuthenticationManager.getEmailUser(), AuthenticationManager.getEmailApikey());
             Message msg = new MimeMessage(session);
             msg.setSentDate(new Date());
-            msg.setHeader("X-Sarbacane-SDK-Java", "1.0.5");
+            msg.setHeader("X-Sarbacane-SDK-Java", getSdkVersion());
             msg.setFrom(new InternetAddress(email.getMailFrom()));
             msg.setSubject(email.getSubject());
 
