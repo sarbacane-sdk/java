@@ -17,14 +17,14 @@
 <dependency>
   <groupId>com.sarbacane</groupId>
   <artifactId>sarbacane-sdk</artifactId>
-  <version>1.0.4</version>
+  <version>${project.version}</version>
 </dependency>
 ```
 
 
 #### JAR
 
-[Download](https://oss.sonatype.org/service/local/repositories/releases/content/com/sarbacane/sarbacane-sdk/1.0.3/sarbacane-sdk-1.0.3.jar)
+[Download](https://oss.sonatype.org/service/local/repositories/releases/content/com/sarbacane/sarbacane-sdk/${project.version}/sarbacane-sdk-${project.version}.jar)
 
 
 #### Sources
