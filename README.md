@@ -1,5 +1,5 @@
 ![alt tag](https://cloud.githubusercontent.com/assets/18444530/22825087/81a050e8-ef8b-11e6-8b33-2508b9be27a8.png)
-### Sarbacane SDK JAVA - Send e-mail and text messages (sms) ${project.version}
+### Sarbacane SDK JAVA - Send e-mail and text messages (sms)
 
 
 * Load artefact from pom.xml
@@ -17,14 +17,14 @@
 <dependency>
   <groupId>com.sarbacane</groupId>
   <artifactId>sarbacane-sdk</artifactId>
-  <version>${project.version}</version>
+  <version>1.0.5</version>
 </dependency>
 ```
 
 
 #### JAR
 
-[Download](https://oss.sonatype.org/service/local/repositories/releases/content/com/sarbacane/sarbacane-sdk/${project.version}/sarbacane-sdk-${project.version}.jar)
+[Download](https://oss.sonatype.org/service/local/repositories/releases/content/com/sarbacane/sarbacane-sdk/1.0.5/sarbacane-sdk-1.0.5.jar)
 
 
 #### Sources

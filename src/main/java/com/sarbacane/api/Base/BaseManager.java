@@ -23,6 +23,8 @@ import java.util.Properties;
 
 
 public class BaseManager {
+
+
     private static final String TYPE = "text/html; charset=utf-8";
     protected static String baseURL = "https://api.primotexto.com/v2";
     protected static String smtpHost = "smtp.tipimail.com";
@@ -302,6 +304,17 @@ public class BaseManager {
             br.close();
         }
     }
+
+public static String getSdkVersion() {
+    Properties prop = new Properties();
+    try {
+        prop.load(BaseManager.class.getClassLoader().getResourceAsStream("sdk.properties"));
+        return prop.getProperty("version");
+    } catch (IOException ex) {
+        return "error.";
+    }
+
+}
 
 
 
