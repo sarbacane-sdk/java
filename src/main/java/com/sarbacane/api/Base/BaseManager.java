@@ -33,8 +33,7 @@ public class BaseManager {
 
     private static SMTPTransport smtpTransport;
     private static Session session;
-
-
+    
     protected static String sendTransport(SBEmailMessage email) throws MessagingException {
         try {
             props.put("mail.smtp.host", smtpHost);
