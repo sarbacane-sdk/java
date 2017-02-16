@@ -24,30 +24,48 @@ import java.util.Properties;
 
 public class BaseManager {
 
-
-    private static final String TYPE = "text/html; charset=utf-8";
-    protected static String baseURL = "https://api.primotexto.com/v2";
-    protected static String smtpHost = "smtp.tipimail.com";
-    protected static Integer smtpPort = 587;
+    private static final String propertiesFileName = "sdk.properties";
     private static Properties props = new Properties();
 
-    private static SMTPTransport smtpTransport;
-    private static Session session;
-    
+    static {
+        try {
+            props.load(BaseManager.class.getClassLoader().getResourceAsStream(propertiesFileName));
+
+        } catch (Exception e) {
+            throw new RuntimeException("Error loading configuration: " + e, e);
+        }
+    }
+
+
+        protected static final String sdkVersion = props.getProperty("version");
+        protected static final String smsUrl = props.getProperty("smsUrl");
+        protected static final String smtpHost = props.getProperty("smtpHost");
+        protected static final Integer smtpPort = Integer.parseInt(props.getProperty("smtpPort"));
+        protected static final Integer smtpConnectionTimeout = Integer.parseInt(props.getProperty("smtpConnectionTimeout"));
+        protected static final String smtpStartTlsEnable = props.getProperty("smtpStartTlsEnable");
+        protected static final String smtpAuthEnable = props.getProperty("smtpAuthEnable");
+        protected static final String smtpDefaultHtmlEncoding = props.getProperty("smtpDefaultHtmlEncoding");
+        protected static final String smtpDefaultTextEncoding = props.getProperty("smtpDefaultTextEncoding");
+        private static SMTPTransport smtpTransport;
+        private static Session session;
+
+private static Properties internalProps = new Properties();
+
+
     protected static String sendTransport(SBEmailMessage email) throws MessagingException {
         try {
-            props.put("mail.smtp.host", smtpHost);
-            props.put("mail.smtp.starttls.enable", "true");
-            props.put("mail.smtp.auth", "true");
-            props.put("mail.smtp.socketFactory.port", String.valueOf(smtpPort));
-            props.put("mail.smtp.port", String.valueOf(smtpPort));
-            props.put("mail.smtp.connectiontimeout", 60000);
-            session = Session.getInstance(props);
+            internalProps.put("mail.smtp.host", smtpHost);
+            internalProps.put("mail.smtp.starttls.enable", smtpStartTlsEnable);
+            internalProps.put("mail.smtp.auth", smtpAuthEnable);
+            internalProps.put("mail.smtp.socketFactory.port", String.valueOf(smtpPort));
+            internalProps.put("mail.smtp.port", String.valueOf(smtpPort));
+            internalProps.put("mail.smtp.connectiontimeout", smtpConnectionTimeout);
+            session = Session.getInstance(internalProps);
             smtpTransport = (SMTPTransport) session.getTransport("smtp");
             smtpTransport.connect(smtpHost, smtpPort, AuthenticationManager.getEmailUser(), AuthenticationManager.getEmailApikey());
             Message msg = new MimeMessage(session);
             msg.setSentDate(new Date());
-            msg.setHeader("X-Sarbacane-SDK-Java", getSdkVersion());
+            msg.setHeader("X-Sarbacane-SDK-Java", sdkVersion);
             msg.setFrom(new InternetAddress(email.getMailFrom()));
             msg.setSubject(email.getSubject());
 
@@ -60,9 +78,9 @@ public class BaseManager {
             msg.setRecipients(Message.RecipientType.TO, address);
 
             final MimeBodyPart textPart = new MimeBodyPart();
-            textPart.setContent(email.getTextBody(), "text/plain; charset=utf-8");
+            textPart.setContent(email.getTextBody(), smtpDefaultTextEncoding);
             final MimeBodyPart htmlPart = new MimeBodyPart();
-            htmlPart.setContent(email.getHtmlBody(), "text/html; charset=utf-8");
+            htmlPart.setContent(email.getHtmlBody(), smtpDefaultHtmlEncoding);
             final Multipart mp = new MimeMultipart("alternative");
             mp.addBodyPart(textPart);
             mp.addBodyPart(htmlPart);
@@ -304,16 +322,6 @@ public class BaseManager {
         }
     }
 
-public static String getSdkVersion() {
-    Properties prop = new Properties();
-    try {
-        prop.load(BaseManager.class.getClassLoader().getResourceAsStream("sdk.properties"));
-        return prop.getProperty("version");
-    } catch (IOException ex) {
-        return "error.";
-    }
-
-}
 
 
 

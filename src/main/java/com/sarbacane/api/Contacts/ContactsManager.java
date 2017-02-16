@@ -19,7 +19,7 @@ public class ContactsManager extends BaseManager {
         } else {
             ObjectMapper mapper = new ObjectMapper();
             String json = mapper.writeValueAsString(newContact);
-            return mapper.readValue(BaseManager.httpPost(BaseManager.baseURL + "/lists/" + newContact.getListId() + "/contacts", json), SBSmsContact.class);
+            return mapper.readValue(BaseManager.httpPost(BaseManager.smsUrl + "/lists/" + newContact.getListId() + "/contacts", json), SBSmsContact.class);
         }
     }
 
@@ -29,7 +29,7 @@ public class ContactsManager extends BaseManager {
             throw new RuntimeException("Error: listId is required.\n");
         }
         ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/lists/" + listId + "/contacts"), new TypeReference<List<SBSmsContact>>() {
+        return mapper.readValue(BaseManager.httpGet(BaseManager.smsUrl + "/lists/" + listId + "/contacts"), new TypeReference<List<SBSmsContact>>() {
         });
     }
 
@@ -47,7 +47,7 @@ public class ContactsManager extends BaseManager {
         } else if (isSet(newContact.getIdentifier())) {
             request = "/lists/" + newContact.getListId() + "/contacts?identifier=" + URLEncoder.encode(newContact.getIdentifier(), "UTF-8");
         }
-        return BaseManager.httpDelete(BaseManager.baseURL + request);
+        return BaseManager.httpDelete(BaseManager.smsUrl + request);
     }
 
 

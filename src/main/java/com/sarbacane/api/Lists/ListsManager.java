@@ -20,13 +20,13 @@ public class ListsManager extends BaseManager {
         } else {
             ObjectMapper mapper = new ObjectMapper();
             String json = "{\"name\": \"" + name + "\"}";//mapper.writeValueAsString(obj)
-            return mapper.readValue(BaseManager.httpPost(BaseManager.baseURL + "/lists", json), SBSmsList.class);
+            return mapper.readValue(BaseManager.httpPost(BaseManager.smsUrl + "/lists", json), SBSmsList.class);
         }
     }
 
     public static List<SBSmsList> listsGet() throws IOException {
         AuthenticationManager.ensureSmsTokens();
-        return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/lists"), new TypeReference<List<SBSmsList>>() {
+        return mapper.readValue(BaseManager.httpGet(BaseManager.smsUrl + "/lists"), new TypeReference<List<SBSmsList>>() {
         });
     }
 
@@ -35,7 +35,7 @@ public class ListsManager extends BaseManager {
         if (!isSet(listId)) {
             throw new RuntimeException("Error: listId is required.\n");
         } else {
-            return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/lists/" + listId), SBSmsList.class);
+            return mapper.readValue(BaseManager.httpGet(BaseManager.smsUrl + "/lists/" + listId), SBSmsList.class);
         }
     }
 
@@ -45,7 +45,7 @@ public class ListsManager extends BaseManager {
             throw new RuntimeException("Error: listId AND filePath are required.\n");
         } else {
             String json = BaseManager.readFile(filePath);
-            return BaseManager.baseURL + BaseManager.httpPostH(BaseManager.baseURL + "/lists/" + listId + "/import", json);
+            return BaseManager.smsUrl + BaseManager.httpPostH(BaseManager.smsUrl + "/lists/" + listId + "/import", json);
         }
     }
 
@@ -64,7 +64,7 @@ public class ListsManager extends BaseManager {
         if (!isSet(listId)) {
             throw new RuntimeException("Error: listId is required.\n");
         } else {
-            return BaseManager.httpDelete(BaseManager.baseURL + "/lists/" + listId);
+            return BaseManager.httpDelete(BaseManager.smsUrl + "/lists/" + listId);
         }
     }
 }

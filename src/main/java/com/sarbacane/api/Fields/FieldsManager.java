@@ -23,7 +23,7 @@ public class FieldsManager extends BaseManager {
             newSBSmsField.setType(newSBSmsField.getType().toUpperCase());
             ObjectMapper mapper = new ObjectMapper();
             String json = mapper.writeValueAsString(newSBSmsField);
-            return mapper.readValue(BaseManager.httpPost(BaseManager.baseURL + "/lists/" + newSBSmsField.getListId() + "/fields", json), SBSmsField.class);
+            return mapper.readValue(BaseManager.httpPost(BaseManager.smsUrl + "/lists/" + newSBSmsField.getListId() + "/fields", json), SBSmsField.class);
         }
 
     }
@@ -33,7 +33,7 @@ public class FieldsManager extends BaseManager {
         if (!isSet(newSBSmsField.getId())) {
             throw new RuntimeException("Error: Please define a FieldId.");
         } else {
-            return BaseManager.httpDelete(BaseManager.baseURL + "/lists/" + newSBSmsField.getListId() + "/fields/" + newSBSmsField.getId());
+            return BaseManager.httpDelete(BaseManager.smsUrl + "/lists/" + newSBSmsField.getListId() + "/fields/" + newSBSmsField.getId());
         }
     }
 
@@ -43,7 +43,7 @@ public class FieldsManager extends BaseManager {
             throw new RuntimeException("Error: Please define a ListId.");
         } else {
             ObjectMapper mapper = new ObjectMapper();
-            return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/lists/" + listId + "/fields/"), new TypeReference<List<SBSmsField>>() {
+            return mapper.readValue(BaseManager.httpGet(BaseManager.smsUrl + "/lists/" + listId + "/fields/"), new TypeReference<List<SBSmsField>>() {
             });
         }
     }

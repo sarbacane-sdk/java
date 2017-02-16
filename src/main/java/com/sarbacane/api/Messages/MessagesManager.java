@@ -37,7 +37,7 @@ public class MessagesManager extends BaseManager {
         } else {
             ObjectMapper mapper = new ObjectMapper();
             String json = mapper.writeValueAsString(msg);
-            return mapper.readValue(BaseManager.httpPost(BaseManager.baseURL + "/" + msg.getType() + "/messages/send", json), SBSmsMessageSendingResult.class);
+            return mapper.readValue(BaseManager.httpPost(BaseManager.smsUrl + "/" + msg.getType() + "/messages/send", json), SBSmsMessageSendingResult.class);
         }
     }
 
@@ -45,7 +45,7 @@ public class MessagesManager extends BaseManager {
     public static SBSmsSnapshot smsStatusBySnapshotId(String snapshotId) throws IOException {
         AuthenticationManager.ensureSmsTokens();
         if (snapshotId != null) {
-            return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/messages/status?snapshotId=" + snapshotId), SBSmsSnapshot.class);
+            return mapper.readValue(BaseManager.httpGet(BaseManager.smsUrl + "/messages/status?snapshotId=" + snapshotId), SBSmsSnapshot.class);
         } else {
             throw new RuntimeException("Error: snapshotId is required.\n");
         }
@@ -54,7 +54,7 @@ public class MessagesManager extends BaseManager {
     public static SBSmsSnapshot smsStatusByIdentifier(String identifier) throws IOException {
         AuthenticationManager.ensureSmsTokens();
         if (identifier != null) {
-            return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/messages/status?identifier=" + URLEncoder.encode(identifier, "UTF-8")), SBSmsSnapshot.class);
+            return mapper.readValue(BaseManager.httpGet(BaseManager.smsUrl + "/messages/status?identifier=" + URLEncoder.encode(identifier, "UTF-8")), SBSmsSnapshot.class);
         } else {
             throw new RuntimeException("Error: identifier is required.\n");
         }
@@ -64,10 +64,10 @@ public class MessagesManager extends BaseManager {
         AuthenticationManager.ensureSmsTokens();
         if (category != null) {
             if (category.equals("")) {
-                return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/messages/replies" + URLEncoder.encode(category, "UTF-8")), new TypeReference<List<SBSmsMessageReplies>>() {
+                return mapper.readValue(BaseManager.httpGet(BaseManager.smsUrl + "/messages/replies" + URLEncoder.encode(category, "UTF-8")), new TypeReference<List<SBSmsMessageReplies>>() {
                 });
             } else {
-                return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/messages/replies?category=" + URLEncoder.encode(category, "UTF-8")), new TypeReference<List<SBSmsMessageReplies>>() {
+                return mapper.readValue(BaseManager.httpGet(BaseManager.smsUrl + "/messages/replies?category=" + URLEncoder.encode(category, "UTF-8")), new TypeReference<List<SBSmsMessageReplies>>() {
                 });
             }
         } else {
@@ -79,9 +79,9 @@ public class MessagesManager extends BaseManager {
         AuthenticationManager.ensureSmsTokens();
         if (category != null) {
             if (category.equals("")) {
-                return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/messages/stats" + URLEncoder.encode(category, "UTF-8")), SBSmsMessageStats.class);
+                return mapper.readValue(BaseManager.httpGet(BaseManager.smsUrl + "/messages/stats" + URLEncoder.encode(category, "UTF-8")), SBSmsMessageStats.class);
             } else {
-                return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/messages/stats?category=" + URLEncoder.encode(category, "UTF-8")), SBSmsMessageStats.class);
+                return mapper.readValue(BaseManager.httpGet(BaseManager.smsUrl + "/messages/stats?category=" + URLEncoder.encode(category, "UTF-8")), SBSmsMessageStats.class);
             }
         } else {
             throw new RuntimeException("Error: Please define category");
@@ -91,7 +91,7 @@ public class MessagesManager extends BaseManager {
     public static SBSmsMessageBlacklists smsBlacklists(String category) throws IOException {
         AuthenticationManager.ensureSmsTokens();
         if (category != null) {
-            return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/messages/blacklists?category=" + URLEncoder.encode(category, "UTF-8")), SBSmsMessageBlacklists.class);
+            return mapper.readValue(BaseManager.httpGet(BaseManager.smsUrl + "/messages/blacklists?category=" + URLEncoder.encode(category, "UTF-8")), SBSmsMessageBlacklists.class);
         } else {
             throw new RuntimeException("Error: Please define category");
         }

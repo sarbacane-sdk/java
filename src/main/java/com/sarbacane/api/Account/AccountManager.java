@@ -17,18 +17,18 @@ public class AccountManager extends BaseManager {
 
     public static SBSmsAccount accountStats() throws IOException {
         AuthenticationManager.ensureSmsTokens();
-        return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/account/stats"), SBSmsAccount.class);
+        return mapper.readValue(BaseManager.httpGet(BaseManager.smsUrl + "/account/stats"), SBSmsAccount.class);
     }
 
     public static List<SBSmsAccountBounces> accountBouncesGet() throws IOException {
         AuthenticationManager.ensureSmsTokens();
-        return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/bounces/default/contacts"), new TypeReference<List<SBSmsAccountBounces>>() {
+        return mapper.readValue(BaseManager.httpGet(BaseManager.smsUrl + "/bounces/default/contacts"), new TypeReference<List<SBSmsAccountBounces>>() {
         });
     }
 
     public static List<SBSmsAccountUnsubscribers> accountUnsubscribersGet() throws IOException {
         AuthenticationManager.ensureSmsTokens();
-        return mapper.readValue(BaseManager.httpGet(BaseManager.baseURL + "/unsubscribers/default/contacts"), new TypeReference<List<SBSmsAccountUnsubscribers>>() {
+        return mapper.readValue(BaseManager.httpGet(BaseManager.smsUrl + "/unsubscribers/default/contacts"), new TypeReference<List<SBSmsAccountUnsubscribers>>() {
         });
     }
 
@@ -38,7 +38,7 @@ public class AccountManager extends BaseManager {
         ptb.setIdentifier(identifier);
         ObjectMapper mapper = new ObjectMapper();
         String json = mapper.writeValueAsString(ptb);
-        return mapper.readValue(BaseManager.httpPost(BaseManager.baseURL + "/bounces/default/contacts", json), SBSmsAccountBounces.class);
+        return mapper.readValue(BaseManager.httpPost(BaseManager.smsUrl + "/bounces/default/contacts", json), SBSmsAccountBounces.class);
     }
 
     public static SBSmsAccountUnsubscribers accountUnsubscribersCreate(String identifier) throws IOException {
@@ -47,7 +47,7 @@ public class AccountManager extends BaseManager {
         ptb.setIdentifier(identifier);
         ObjectMapper mapper = new ObjectMapper();
         String json = mapper.writeValueAsString(ptb);
-        return mapper.readValue(BaseManager.httpPost(BaseManager.baseURL + "/bounces/default/contacts", json), SBSmsAccountUnsubscribers.class);
+        return mapper.readValue(BaseManager.httpPost(BaseManager.smsUrl + "/bounces/default/contacts", json), SBSmsAccountUnsubscribers.class);
     }
 
     public static String accountBouncesDeleteByIdentifier(String identifier) throws IOException {
@@ -55,7 +55,7 @@ public class AccountManager extends BaseManager {
         if (!isSet(identifier)) {
             throw new RuntimeException("Error: identifier is required.");
         }
-        return BaseManager.httpDelete(BaseManager.baseURL + "/bounces/default/contacts?identifier=" + URLEncoder.encode(identifier, "UTF-8"));
+        return BaseManager.httpDelete(BaseManager.smsUrl + "/bounces/default/contacts?identifier=" + URLEncoder.encode(identifier, "UTF-8"));
     }
 
     public static String accountUnsubscribersDeleteByIdentifier(String identifier) throws IOException {
@@ -63,7 +63,7 @@ public class AccountManager extends BaseManager {
         if (!isSet(identifier)) {
             throw new RuntimeException("Error: identifier is required.");
         }
-        return BaseManager.httpDelete(BaseManager.baseURL + "/unsubscribers/default/contacts?identifier=" + URLEncoder.encode(identifier, "UTF-8"));
+        return BaseManager.httpDelete(BaseManager.smsUrl + "/unsubscribers/default/contacts?identifier=" + URLEncoder.encode(identifier, "UTF-8"));
     }
 
     public static String accountBouncesDeleteById(String id) throws IOException {
@@ -71,7 +71,7 @@ public class AccountManager extends BaseManager {
         if (!isSet(id)) {
             throw new RuntimeException("Error: identifier is required.");
         }
-        return BaseManager.httpDelete(BaseManager.baseURL + "/bounces/default/contacts?identifier=" + id);
+        return BaseManager.httpDelete(BaseManager.smsUrl + "/bounces/default/contacts?identifier=" + id);
     }
 
     public static String accountUnsubscribersDeleteById(String id) throws IOException {
@@ -79,6 +79,6 @@ public class AccountManager extends BaseManager {
         if (!isSet(id)) {
             throw new RuntimeException("Error: identifier is required.");
         }
-        return BaseManager.httpDelete(BaseManager.baseURL + "/unsubscribers/default/contacts/" + id);
+        return BaseManager.httpDelete(BaseManager.smsUrl + "/unsubscribers/default/contacts/" + id);
     }
 }
