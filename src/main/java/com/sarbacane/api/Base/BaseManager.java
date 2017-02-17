@@ -46,6 +46,7 @@ public class BaseManager {
         protected static final String smtpAuthEnable = props.getProperty("smtpAuthEnable");
         protected static final String smtpDefaultHtmlEncoding = props.getProperty("smtpDefaultHtmlEncoding");
         protected static final String smtpDefaultTextEncoding = props.getProperty("smtpDefaultTextEncoding");
+        protected static final String smtpSdkHeader = props.getProperty("smtpSdkHeader");
         private static SMTPTransport smtpTransport;
         private static Session session;
 
@@ -65,7 +66,7 @@ private static Properties internalProps = new Properties();
             smtpTransport.connect(smtpHost, smtpPort, AuthenticationManager.getEmailUser(), AuthenticationManager.getEmailApikey());
             Message msg = new MimeMessage(session);
             msg.setSentDate(new Date());
-            msg.setHeader("X-Sarbacane-SDK-Java", sdkVersion);
+            msg.setHeader(smtpSdkHeader, sdkVersion);
             msg.setFrom(new InternetAddress(email.getMailFrom()));
             msg.setSubject(email.getSubject());
 
