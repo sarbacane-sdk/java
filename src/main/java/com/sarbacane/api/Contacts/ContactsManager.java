@@ -12,6 +12,17 @@ import java.util.List;
 
 public class ContactsManager extends BaseManager {
 
+    public static SBSmsIdentifier checkIdentifier(String identifier) throws IOException {
+        AuthenticationManager.ensureSmsTokens();
+        if (!isSet(identifier)) {
+            throw new RuntimeException("Error: identifier is required.\n");
+        } else {
+
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.readValue(BaseManager.httpGet(BaseManager.smsUrl + "/check?identifier=" + URLEncoder.encode(identifier, "UTF-8")), SBSmsIdentifier.class);
+        }
+    }
+
     public static SBSmsContact contactsCreate(SBSmsContact newContact) throws IOException {
         AuthenticationManager.ensureSmsTokens();
         if (!isSet(newContact.getListId())) {
