@@ -13,16 +13,28 @@
 
 #### Account & API Key
 
+##### E-mail
+
+[Create E-mail account](https://www.tipimail.com/register)
+
+
+[Generate your E-mail Tokens (be logged in first)](https://app.tipimail.com/#/app/settings/smtp_and_apis)
+
+![email tokens](https://cloud.githubusercontent.com/assets/18444530/23157829/fda5247c-f81c-11e6-936a-cc4905315cd9.jpg)
+
+
+
+##### SMS
+
 [Create SMS account](https://www.primotexto.com/creer_compte.asp)
 
-![create sms account](https://cloud.githubusercontent.com/assets/18444530/23156480/5ed688fe-f817-11e6-9ed9-82f9ebee7d1e.png)
+
+[Generate your SMS API Key (be logged in first)](https://www.primotexto.com/webapp/#/developer/keys)
+
+![api_key_real](https://cloud.githubusercontent.com/assets/18444530/23158387/52492cc4-f81f-11e6-8535-9438f11aa0f5.png)
 
 
-[Generate your first API Key (be logged in first)](https://www.primotexto.com/webapp/#/developer/keys)
 
-![sms apikey 1](https://cloud.githubusercontent.com/assets/18444530/23156662/3803869a-f818-11e6-8f6a-1dfe90e59842.png)
-
-![sms apikey2](https://cloud.githubusercontent.com/assets/18444530/23156669/3db6d5e2-f818-11e6-96ee-29bf4c2d5a82.png)
 
 #### pom.xml
 
