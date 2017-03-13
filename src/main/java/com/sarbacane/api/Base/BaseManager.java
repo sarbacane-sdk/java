@@ -112,8 +112,7 @@ private static Properties internalProps = new Properties();
                 systemSettings.put("https.proxyPort", AuthenticationManager.getProxyPort().toString());
             }
             HttpURLConnection conn = (HttpURLConnection) to.openConnection();
-            conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("Accept", "application/json");
+            conn.setRequestProperty("Content-Type", "application/json; charset=utf-8");
             conn.setRequestProperty("X-Primotexto-ApiKey", AuthenticationManager.getSmsApikey());
             conn.setRequestMethod(method);
             return conn;
@@ -170,7 +169,7 @@ private static Properties internalProps = new Properties();
         HttpURLConnection conn = httpWithTokens(url, "POST");
         conn.setDoOutput(true);
         OutputStream os = conn.getOutputStream();
-        os.write(args.getBytes());
+        os.write(args.getBytes("UTF-8"));
         os.flush();
 
         if (conn.getResponseCode() != 200) {
@@ -209,7 +208,7 @@ private static Properties internalProps = new Properties();
         HttpURLConnection conn = httpWithTokens(url, "POST");
         conn.setDoOutput(true);
         OutputStream os = conn.getOutputStream();
-        os.write(args.getBytes());
+        os.write(args.getBytes("UTF-8"));
         os.flush();
 
         if (conn.getResponseCode() != 201) {
@@ -239,7 +238,7 @@ private static Properties internalProps = new Properties();
         HttpURLConnection conn = httpWithTokens(url, "PUT");
         conn.setDoOutput(true);
         OutputStream os = conn.getOutputStream();
-        os.write(args.getBytes());
+        os.write(args.getBytes("UTF-8"));
         os.flush();
         if (conn.getResponseCode() != 200) {
             BufferedReader br = new BufferedReader(new InputStreamReader(
