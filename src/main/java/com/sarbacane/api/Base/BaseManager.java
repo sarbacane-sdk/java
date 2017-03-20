@@ -3,6 +3,9 @@ package com.sarbacane.api.Base;
 
 import com.sarbacane.api.Authentication.AuthenticationManager;
 import com.sarbacane.api.Messages.SBEmailMessage;
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.WebResource;
 import com.sun.mail.smtp.SMTPTransport;
 
 import javax.mail.Message;
@@ -37,20 +40,20 @@ public class BaseManager {
     }
 
 
-        protected static final String sdkVersion = props.getProperty("version");
-        protected static final String smsUrl = props.getProperty("smsUrl");
-        protected static final String smtpHost = props.getProperty("smtpHost");
-        protected static final Integer smtpPort = Integer.parseInt(props.getProperty("smtpPort"));
-        protected static final Integer smtpConnectionTimeout = Integer.parseInt(props.getProperty("smtpConnectionTimeout"));
-        protected static final String smtpStartTlsEnable = props.getProperty("smtpStartTlsEnable");
-        protected static final String smtpAuthEnable = props.getProperty("smtpAuthEnable");
-        protected static final String smtpDefaultHtmlEncoding = props.getProperty("smtpDefaultHtmlEncoding");
-        protected static final String smtpDefaultTextEncoding = props.getProperty("smtpDefaultTextEncoding");
-        protected static final String smtpSdkHeader = props.getProperty("smtpSdkHeader");
-        private static SMTPTransport smtpTransport;
-        private static Session session;
+    protected static final String sdkVersion = props.getProperty("version");
+    protected static final String smsUrl = props.getProperty("smsUrl");
+    protected static final String smtpHost = props.getProperty("smtpHost");
+    protected static final Integer smtpPort = Integer.parseInt(props.getProperty("smtpPort"));
+    protected static final Integer smtpConnectionTimeout = Integer.parseInt(props.getProperty("smtpConnectionTimeout"));
+    protected static final String smtpStartTlsEnable = props.getProperty("smtpStartTlsEnable");
+    protected static final String smtpAuthEnable = props.getProperty("smtpAuthEnable");
+    protected static final String smtpDefaultHtmlEncoding = props.getProperty("smtpDefaultHtmlEncoding");
+    protected static final String smtpDefaultTextEncoding = props.getProperty("smtpDefaultTextEncoding");
+    protected static final String smtpSdkHeader = props.getProperty("smtpSdkHeader");
+    private static SMTPTransport smtpTransport;
+    private static Session session;
 
-private static Properties internalProps = new Properties();
+    private static Properties internalProps = new Properties();
 
 
     protected static String sendTransport(SBEmailMessage email) throws MessagingException {
@@ -130,76 +133,52 @@ private static Properties internalProps = new Properties();
     }
 
 
-    protected static String httpGet(String url) throws IOException {
+    protected static String httpGet(String url) {
+        try {
 
-        HttpURLConnection conn = httpWithTokens(url, "GET");
-        if (conn.getResponseCode() != 200) {
-            BufferedReader br = new BufferedReader(new InputStreamReader(
-                    (conn.getErrorStream())));
-            String line;
-            StringBuilder result = new StringBuilder();
-            while ((line = br.readLine()) != null) {
-                result.append(line);
+            Client client = Client.create();
 
+            WebResource webResource = client.resource(url);
+
+            ClientResponse response = webResource.header("X-Primotexto-ApiKey", AuthenticationManager.getSmsApikey())
+                    .get(ClientResponse.class);
+
+            if (response.getStatus() != 200) {
+                throw new RuntimeException("Failed : HTTP error code : "
+                        + response.getStatus());
             }
-            conn.disconnect();
-            throw new RuntimeException("Failed : HTTP error code : "
-                    + conn.getResponseCode()
-                    + "\nReason:"
-                    + result.toString());
-        } else {
-            BufferedReader br = new BufferedReader(new InputStreamReader(
-                    (conn.getInputStream())));
-
-
-            String line;
-            StringBuilder result = new StringBuilder();
-            while ((line = br.readLine()) != null) {
-                result.append(line);
-
-            }
-            conn.disconnect();
-            return result.toString();
+            String output = response.getEntity(String.class);
+            return output;
+        } catch (Exception e) {
+            return e.toString();
         }
     }
 
-    protected static String httpPost(String url, String args) throws IOException {
+    protected static String httpPost(String url, String args) {
+        try {
 
+            Client client = Client.create();
 
-        HttpURLConnection conn = httpWithTokens(url, "POST");
-        conn.setDoOutput(true);
-        OutputStream os = conn.getOutputStream();
-        os.write(args.getBytes("UTF-8"));
-        os.flush();
+            WebResource webResource = client.resource(url);
 
-        if (conn.getResponseCode() != 200) {
-            BufferedReader br = new BufferedReader(new InputStreamReader(
-                    (conn.getErrorStream())));
-            String line;
-            StringBuilder result = new StringBuilder();
-            while ((line = br.readLine()) != null) {
-                result.append(line);
+            ClientResponse response = webResource.header("Content-Type", "application/json;charset=UTF-8")
+                    .header("X-Primotexto-ApiKey", AuthenticationManager.getSmsApikey())
+                    .post(ClientResponse.class, args);
 
+            if (response.getStatus() != 200) {
+                throw new RuntimeException("Failed : HTTP error code : "
+                        + response.getStatus());
             }
-            conn.disconnect();
-            throw new RuntimeException("Failed : HTTP error code : "
-                    + conn.getResponseCode()
-                    + "\nReason:"
-                    + result.toString());
-        } else {
-            BufferedReader br = new BufferedReader(new InputStreamReader(
-                    (conn.getInputStream())));
 
+            String output = response.getEntity(String.class);
+            return output;
 
-            String line;
-            StringBuilder result = new StringBuilder();
-            while ((line = br.readLine()) != null) {
-                result.append(line);
+        } catch (Exception e) {
 
-            }
-            conn.disconnect();
-            return result.toString();
+            return e.toString();
+
         }
+
     }
 
     protected static String httpPostH(String url, String args) throws IOException {
@@ -235,64 +214,50 @@ private static Properties internalProps = new Properties();
 
 
     protected static String httpPut(String url, String args) throws IOException {
-        HttpURLConnection conn = httpWithTokens(url, "PUT");
-        conn.setDoOutput(true);
-        OutputStream os = conn.getOutputStream();
-        os.write(args.getBytes("UTF-8"));
-        os.flush();
-        if (conn.getResponseCode() != 200) {
-            BufferedReader br = new BufferedReader(new InputStreamReader(
-                    (conn.getErrorStream())));
-            String line;
-            StringBuilder result = new StringBuilder();
-            while ((line = br.readLine()) != null) {
-                result.append(line);
+        try {
 
+            Client client = Client.create();
+
+            WebResource webResource = client.resource(url);
+
+            ClientResponse response = webResource.header("Content-Type", "application/json;charset=UTF-8")
+                    .header("X-Primotexto-ApiKey", AuthenticationManager.getSmsApikey())
+                    .put(ClientResponse.class, args);
+
+            if (response.getStatus() != 200) {
+                throw new RuntimeException("Failed : HTTP error code : "
+                        + response.getStatus());
             }
-            conn.disconnect();
-            throw new RuntimeException("Failed : HTTP error code : "
-                    + conn.getResponseCode()
-                    + "\nReason:"
-                    + result.toString());
-        } else {
-            BufferedReader br = new BufferedReader(new InputStreamReader(
-                    (conn.getInputStream())));
 
+            String output = response.getEntity(String.class);
+            return output;
 
-            String line;
-            StringBuilder result = new StringBuilder();
-            while ((line = br.readLine()) != null) {
-                result.append(line);
+        } catch (Exception e) {
 
-            }
-            conn.disconnect();
-            return result.toString();
+            return e.toString();
+
         }
     }
 
     protected static String httpDelete(String url) throws IOException {
 
-        HttpURLConnection conn = httpWithTokens(url, "DELETE");
+        try {
 
-        if (conn.getResponseCode() != 204) {
+            Client client = Client.create();
 
-            throw new RuntimeException("Failed : HTTP error code : "
-                    + conn.getResponseCode()
-                    + "\nReason:"
-                    + conn.getResponseMessage());
-        } else {
-            BufferedReader br = new BufferedReader(new InputStreamReader(
-                    (conn.getInputStream())));
+            WebResource webResource = client.resource(url);
 
+            ClientResponse response = webResource.header("X-Primotexto-ApiKey", AuthenticationManager.getSmsApikey())
+            .delete(ClientResponse.class);
 
-            String line;
-            StringBuilder result = new StringBuilder();
-            while ((line = br.readLine()) != null) {
-                result.append(line);
-
+            if ((response.getStatus() != 200) || (response.getStatus() != 204)) {
+                throw new RuntimeException("Failed : HTTP error code : "
+                        + response.getStatus());
             }
-            conn.disconnect();
-            return result.toString();
+            String output = response.getEntity(String.class);
+            return output;
+        } catch (Exception e) {
+            return e.toString();
         }
     }
 
@@ -321,9 +286,6 @@ private static Properties internalProps = new Properties();
             br.close();
         }
     }
-
-
-
 
 
 }
