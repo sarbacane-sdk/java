@@ -40,7 +40,6 @@ public class BaseManager {
     }
 
 
-    protected static final String sdkVersion = props.getProperty("version");
     protected static final String smsUrl = props.getProperty("smsUrl");
     protected static final String smtpHost = props.getProperty("smtpHost");
     protected static final Integer smtpPort = Integer.parseInt(props.getProperty("smtpPort"));
@@ -49,7 +48,8 @@ public class BaseManager {
     protected static final String smtpAuthEnable = props.getProperty("smtpAuthEnable");
     protected static final String smtpDefaultHtmlEncoding = props.getProperty("smtpDefaultHtmlEncoding");
     protected static final String smtpDefaultTextEncoding = props.getProperty("smtpDefaultTextEncoding");
-    protected static final String smtpSdkHeader = props.getProperty("smtpSdkHeader");
+    protected static final String sdkHeader = props.getProperty("sdkHeader");
+    protected static final String sdkVersion = props.getProperty("sdkVersion");
     private static SMTPTransport smtpTransport;
     private static Session session;
 
@@ -69,7 +69,7 @@ public class BaseManager {
             smtpTransport.connect(smtpHost, smtpPort, AuthenticationManager.getEmailUser(), AuthenticationManager.getEmailApikey());
             Message msg = new MimeMessage(session);
             msg.setSentDate(new Date());
-            msg.setHeader(smtpSdkHeader, sdkVersion);
+            msg.setHeader(sdkHeader, sdkVersion);
             msg.setFrom(new InternetAddress(email.getMailFrom()));
             msg.setSubject(email.getSubject());
 
@@ -117,6 +117,7 @@ public class BaseManager {
             HttpURLConnection conn = (HttpURLConnection) to.openConnection();
             conn.setRequestProperty("Content-Type", "application/json; charset=utf-8");
             conn.setRequestProperty("X-Primotexto-ApiKey", AuthenticationManager.getSmsApikey());
+            conn.setRequestProperty(sdkHeader, sdkVersion);
             conn.setRequestMethod(method);
             return conn;
         } catch (MalformedURLException e) {
@@ -141,6 +142,7 @@ public class BaseManager {
             WebResource webResource = client.resource(url);
 
             ClientResponse response = webResource.header("X-Primotexto-ApiKey", AuthenticationManager.getSmsApikey())
+                    .header(sdkHeader,sdkVersion)
                     .get(ClientResponse.class);
 
             if (response.getStatus() != 200) {
@@ -162,6 +164,7 @@ public class BaseManager {
             WebResource webResource = client.resource(url);
 
             ClientResponse response = webResource.header("Content-Type", "application/json;charset=UTF-8")
+                    .header(sdkHeader,sdkVersion)
                     .header("X-Primotexto-ApiKey", AuthenticationManager.getSmsApikey())
                     .post(ClientResponse.class, args);
 
@@ -222,6 +225,7 @@ public class BaseManager {
 
             ClientResponse response = webResource.header("Content-Type", "application/json;charset=UTF-8")
                     .header("X-Primotexto-ApiKey", AuthenticationManager.getSmsApikey())
+                    .header(sdkHeader,sdkVersion)
                     .put(ClientResponse.class, args);
 
             if (response.getStatus() != 200) {
@@ -248,7 +252,8 @@ public class BaseManager {
             WebResource webResource = client.resource(url);
 
             ClientResponse response = webResource.header("X-Primotexto-ApiKey", AuthenticationManager.getSmsApikey())
-            .delete(ClientResponse.class);
+                    .header(sdkHeader,sdkVersion)
+                    .delete(ClientResponse.class);
 
             if ((response.getStatus() != 200) || (response.getStatus() != 204)) {
                 throw new RuntimeException("Failed : HTTP error code : "
