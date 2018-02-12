@@ -33,7 +33,7 @@ public class SBSmsCampaign {
     @JsonProperty("message")
     private String message;
     @JsonProperty("sendList")
-    private SBSmsCampaignSendList SBSmsCampaignSendList;
+    private String sendList;
     @JsonProperty("state")
     private String state;
     @JsonProperty("name")
@@ -62,11 +62,11 @@ public class SBSmsCampaign {
     }
 
 
-    public SBSmsCampaign(String id, String campaignId, String message, SBSmsCampaignSendList SBSmsCampaignSendList, String state, String name, String type, String sourceAddress, Long date, Boolean flash, Boolean cleanBounces, Boolean cleanUnsubscribers, Boolean keepList, Double totalCredits) {
+    public SBSmsCampaign(String id, String campaignId, String message, String sendList, String state, String name, String type, String sourceAddress, Long date, Boolean flash, Boolean cleanBounces, Boolean cleanUnsubscribers, Boolean keepList, Double totalCredits) {
         this.id = id;
         this.campaignId = campaignId;
         this.message = message;
-        this.SBSmsCampaignSendList = SBSmsCampaignSendList;
+        this.sendList = sendList;
         this.state = state;
         this.name = name;
         this.type = type;
@@ -132,20 +132,16 @@ public class SBSmsCampaign {
 
 
     @JsonProperty("sendList")
-    public SBSmsCampaignSendList getSBSmsCampaignSendList() {
-        return SBSmsCampaignSendList;
+    public String getSendList() {
+        return sendList;
     }
 
 
     @JsonProperty("sendList")
-    public void setSBSmsCampaignSendList(SBSmsCampaignSendList SBSmsCampaignSendList) {
-        this.SBSmsCampaignSendList = SBSmsCampaignSendList;
+    public void setSendList(String sendList) {
+        this.sendList = sendList;
     }
 
-    public SBSmsCampaign withSendList(SBSmsCampaignSendList SBSmsCampaignSendList) {
-        this.SBSmsCampaignSendList = SBSmsCampaignSendList;
-        return this;
-    }
 
 
     @JsonProperty("state")
@@ -338,7 +334,7 @@ public class SBSmsCampaign {
                 "id='" + id + '\'' +
                 ", campaignId='" + campaignId + '\'' +
                 ", message='" + message + '\'' +
-                ", PTSendList=" + SBSmsCampaignSendList +
+                ", sendList=" + sendList +
                 ", state='" + state + '\'' +
                 ", name='" + name + '\'' +
                 ", type='" + type + '\'' +

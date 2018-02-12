@@ -13,9 +13,9 @@ public class CampaignsManager extends BaseManager {
 
     private static ObjectMapper mapper = new ObjectMapper();
 
-    public static SBSmsCampaignSendingResult campaignsMarketingCreate(SBSmsCampaign campaign) throws IOException {
+    public static SBSmsCampaignCreationResult campaignsMarketingCreate(SBSmsCampaign campaign) throws IOException {
         AuthenticationManager.ensureSmsTokens();
-        if (!isSet(campaign.getName()) || (!isSet(campaign.getMessage())) || ("null".equals(campaign.getSBSmsCampaignSendList()))) {
+        if (!isSet(campaign.getName()) || (!isSet(campaign.getMessage())) || (!isSet(campaign.getSendList()))) {
             throw new RuntimeException("Error: name, message and sendList are required.\n");
         } else {
             if (!isSet(campaign.getType())) {
@@ -23,13 +23,13 @@ public class CampaignsManager extends BaseManager {
             }
             ObjectMapper mapper = new ObjectMapper();
             String json = mapper.writeValueAsString(campaign);
-            return mapper.readValue(BaseManager.httpPost(BaseManager.smsUrl + "/marketing/campaigns", json), SBSmsCampaignSendingResult.class);
+            return mapper.readValue(BaseManager.httpPost(BaseManager.smsUrl + "/marketing/campaigns", json), SBSmsCampaignCreationResult.class);
         }
     }
 
-    public static SBSmsCampaignSendingResult campaignsNotificationCreate(SBSmsCampaign campaign) throws IOException {
+    public static SBSmsCampaignCreationResult campaignsNotificationCreate(SBSmsCampaign campaign) throws IOException {
         AuthenticationManager.ensureSmsTokens();
-        if (!isSet(campaign.getName()) || (!isSet(campaign.getMessage())) || ("null".equals(campaign.getSBSmsCampaignSendList()))) {
+        if (!isSet(campaign.getName()) || (!isSet(campaign.getMessage())) || (!isSet(campaign.getSendList()))) {
             throw new RuntimeException("Error: name, message and sendList are required.\n");
         } else {
             if (!isSet(campaign.getType())) {
@@ -37,7 +37,7 @@ public class CampaignsManager extends BaseManager {
             }
             ObjectMapper mapper = new ObjectMapper();
             String json = mapper.writeValueAsString(campaign);
-            return mapper.readValue(BaseManager.httpPost(BaseManager.smsUrl + "/marketing/campaigns", json), SBSmsCampaignSendingResult.class);
+            return mapper.readValue(BaseManager.httpPost(BaseManager.smsUrl + "/marketing/campaigns", json), SBSmsCampaignCreationResult.class);
         }
     }
 
